@@ -1,0 +1,174 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  BOOND — Water-Leak Reporting and Triage Application Backend
+  AWS SAM Template targeting Python 3.12 runtime with DynamoDB, Private S3,
+  API Gateway HTTP API v2, and Cedar authorization engine.
+
+Parameters:
+  EngineerPin:
+    Type: String
+    NoEcho: true
+    Default: '8472'
+    Description: Demo engineer PIN for triage prototype (replace with Cognito in production)
+
+  DemoLat:
+    Type: Number
+    Default: 28.6139
+    Description: Reference latitude for municipal demo ticket seeding
+
+  DemoLng:
+    Type: Number
+    Default: 77.2090
+    Description: Reference longitude for municipal demo ticket seeding
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 512
+    Runtime: python3.12
+    Architectures:
+      - x86_64
+
+Resources:
+  # ============================================================================
+  # API Gateway HTTP API (v2)
+  # ============================================================================
+  BoondHttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration:
+        AllowOrigins:
+          - '*'
+        AllowMethods:
+          - GET
+          - POST
+          - OPTIONS
+        AllowHeaders:
+          - Content-Type
+          - X-Boond-Pin
+          - Authorization
+        MaxAge: 600
+
+  # ============================================================================
+  # Lambda Backend Function
+  # ============================================================================
+  BoondBackendFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: backend/
+      Handler: app.lambda_handler
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref BoondTicketsTable
+          PHOTOS_BUCKET: !Ref BoondPhotosBucket
+          ENGINEER_PIN: !Ref EngineerPin
+          DEMO_LAT: !Ref DemoLat
+          DEMO_LNG: !Ref DemoLng
+      Policies:
+        # Least-privilege IAM permissions for DynamoDB & S3
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:GetItem
+                - dynamodb:PutItem
+                - dynamodb:UpdateItem
+                - dynamodb:Scan
+                - dynamodb:Query
+              Resource: !GetAtt BoondTicketsTable.Arn
+            - Effect: Allow
+              Action:
+                - s3:GetObject
+                - s3:PutObject
+              Resource: !Sub '${BoondPhotosBucket.Arn}/*'
+      Events:
+        GetTickets:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref BoondHttpApi
+            Path: /tickets
+            Method: GET
+        PostReports:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref BoondHttpApi
+            Path: /reports
+            Method: POST
+        PostPhotoUrl:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref BoondHttpApi
+            Path: /photo-url
+            Method: POST
+        PostCloseTicket:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref BoondHttpApi
+            Path: /tickets/{id}/close
+            Method: POST
+        PostDisputeTicket:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref BoondHttpApi
+            Path: /tickets/{id}/dispute
+            Method: POST
+        PostSeed:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref BoondHttpApi
+            Path: /seed
+            Method: POST
+
+  # ============================================================================
+  # DynamoDB Table
+  # ============================================================================
+  BoondTicketsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+
+  # ============================================================================
+  # S3 Bucket for Before/After Leak Photos
+  # ============================================================================
+  BoondPhotosBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      CorsConfiguration:
+        CorsRules:
+          - AllowedHeaders:
+              - '*'
+            AllowedMethods:
+              - GET
+              - PUT
+              - HEAD
+            AllowedOrigins:
+              - '*'
+            MaxAge: 3600
+
+Outputs:
+  ApiUrl:
+    Description: Base endpoint URL for BOOND HTTP API v2
+    Value: !Sub 'https://${BoondHttpApi}.execute-api.${AWS::Region}.amazonaws.com'
+
+  PhotosBucketName:
+    Description: Private S3 Bucket for leak photos
+    Value: !Ref BoondPhotosBucket
+
+  TicketsTableName:
+    Description: DynamoDB Table name for tickets
+    Value: !Ref BoondTicketsTable
