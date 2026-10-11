@@ -9,7 +9,7 @@
   <!-- Spray Brutalism Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Rubik+Spray+Paint&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Rubik+Spray+Paint&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Leaflet CDN -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
@@ -33,7 +33,7 @@
       <!-- Live Status Indicator -->
       <div id="status-indicator" class="status-pill" title="Backend Connection Status">
         <span id="status-dot" class="status-dot disconnected"></span>
-        <span id="status-text" data-i18n="statusOffline">API OFFLINE</span>
+        <span id="status-text" data-i18n="statusOffline">API NOT CONFIGURED</span>
       </div>
 
       <!-- Language Toggle (EN / हिं) -->
@@ -76,26 +76,26 @@
     <!-- SECTION 5: BENTO IMPACT LEDGER -->
     <section class="ledger-grid" aria-label="Impact Ledger">
       <div class="ledger-tile">
-        <span class="ledger-label" data-i18n="ledgerAddressed">EST. LEAKAGE ADDRESSED</span>
-        <div id="metric-addressed" class="ledger-value">0 L/d</div>
-        <span class="ledger-sub" data-i18n="ledgerDisclaimer">Heuristic Estimate</span>
+        <span class="ledger-label" data-i18n="ledgerAddressed">ESTIMATED LEAKAGE RATE ADDRESSED</span>
+        <div id="metric-addressed" class="ledger-value">—</div>
+        <span class="ledger-sub" data-i18n="ledgerDisclaimer">NOT VERIFIED WATER SAVINGS</span>
       </div>
 
       <div class="ledger-tile">
         <span class="ledger-label" data-i18n="ledgerClosed">TICKETS CLOSED W/ PROOF</span>
-        <div id="metric-closed" class="ledger-value">0</div>
+        <div id="metric-closed" class="ledger-value">—</div>
         <span class="ledger-sub" data-i18n="ledgerCedarVerified">Cedar Policy Verified</span>
       </div>
 
       <div class="ledger-tile">
         <span class="ledger-label" data-i18n="ledgerMerged">DUPLICATE REPORTS MERGED</span>
-        <div id="metric-merged" class="ledger-value">0</div>
+        <div id="metric-merged" class="ledger-value">—</div>
         <span class="ledger-sub" data-i18n="ledgerWithin30m">&lt; 30m Proximity</span>
       </div>
 
       <div class="ledger-tile">
         <span class="ledger-label" data-i18n="ledgerOpen">OPEN LEAKS IN QUEUE</span>
-        <div id="metric-open" class="ledger-value">0</div>
+        <div id="metric-open" class="ledger-value">—</div>
         <span class="ledger-sub" data-i18n="ledgerPendingRepair">Active Triage</span>
       </div>
     </section>
@@ -117,20 +117,24 @@
         <!-- Chunky Square Legend -->
         <div class="map-legend">
           <div class="legend-item">
-            <span class="legend-swatch" style="background: var(--alarm);"></span>
+            <span class="legend-swatch gush"></span>
             <span data-i18n="legendGush">GUSH (4K-15K L/d)</span>
           </div>
           <div class="legend-item">
-            <span class="legend-swatch" style="background: var(--drip);"></span>
+            <span class="legend-swatch steady"></span>
             <span data-i18n="legendSteady">STEADY (500-2K L/d)</span>
           </div>
           <div class="legend-item">
-            <span class="legend-swatch" style="background: var(--spray);"></span>
+            <span class="legend-swatch drip"></span>
             <span data-i18n="legendDrip">DRIP (50-200 L/d)</span>
           </div>
           <div class="legend-item">
-            <span class="legend-swatch" style="background: var(--ink);"></span>
+            <span class="legend-swatch closed">✓</span>
             <span data-i18n="legendClosed">FIXED (✓)</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-swatch simulated"></span>
+            <span data-i18n="legendSimulated">SIMULATED</span>
           </div>
         </div>
       </div>
@@ -212,7 +216,7 @@
 
       <!-- Tickets Grid Container -->
       <div id="tickets-container" class="tickets-container">
-        <!-- Ticket cards injected dynamically via app.js -->
+        <!-- Injected dynamically via app.js -->
         <div class="slab" style="padding: 32px; grid-column: 1 / -1; text-align: center;">
           <p style="font-weight: 700;" data-i18n="loadingQueue">Loading municipal queue...</p>
         </div>

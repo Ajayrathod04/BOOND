@@ -1,6 +1,7 @@
 /**
  * BOOND — Municipal Water-Leak Reporting & Triage Engine
  * Vanilla JavaScript Frontend Implementation (Spray Brutalism)
+ * Phase 2B: Heat & Water Design Polish + Contract Audit
  */
 
 (function () {
@@ -24,11 +25,11 @@
       reportBtn: "REPORT A LEAK",
       queueBtn: "VIEW REPAIR QUEUE",
       seedBtn: "SEED 12 DEMO LEAKS",
-      ledgerAddressed: "EST. LEAKAGE ADDRESSED",
+      ledgerAddressed: "ESTIMATED LEAKAGE RATE ADDRESSED",
       ledgerClosed: "TICKETS CLOSED W/ PROOF",
       ledgerMerged: "DUPLICATE REPORTS MERGED",
       ledgerOpen: "OPEN LEAKS IN QUEUE",
-      ledgerDisclaimer: "Heuristic Estimate",
+      ledgerDisclaimer: "NOT VERIFIED WATER SAVINGS",
       ledgerCedarVerified: "Cedar Policy Verified",
       ledgerWithin30m: "< 30m Proximity",
       ledgerPendingRepair: "Active Triage",
@@ -38,6 +39,7 @@
       legendSteady: "STEADY (500-2K L/d)",
       legendDrip: "DRIP (50-200 L/d)",
       legendClosed: "FIXED (✓)",
+      legendSimulated: "SIMULATED",
       formTitle: "REPORT LEAK",
       flowSeverity: "OBSERVED FLOW SEVERITY",
       drinkingLine: "DRINKING WATER LINE?",
@@ -55,9 +57,8 @@
       filterDrinking: "DRINKING WATER",
       loadingQueue: "Loading municipal queue...",
       noTicketsFound: "NO LEAKS FOUND IN THIS VIEW.",
-      reportersCount: "reporters",
-      drinkingBadge: "DRINKING LINE",
-      nonDrinkingBadge: "NON-DRINKING",
+      reportersCount: "citizen reports",
+      drinkingPriorityBadge: "DRINKING WATER PRIORITY",
       simulatedBadge: "SIMULATED",
       whyBtn: "WHY?",
       closeBtn: "CLOSE TICKET",
@@ -72,7 +73,13 @@
       cedarTitle: "3. Cedar Policy Authorization",
       cedarBody: "Ticket closures require authenticated engineer status and verified after-repair photo proof. Reopening closed tickets requires at least 2 citizen disputes. Authorization decisions fail closed by design.",
       disclaimerTitle: "4. Honest Estimation Disclaimer",
-      disclaimerBody: "Estimated leakage addressed represents triage ranking metrics, NOT verified water saved. Demo seed tickets are simulated and never claimed as live reports. Prototype PIN authentication must be replaced with Cognito in production."
+      disclaimerBody: "Estimated leakage addressed represents triage ranking metrics, NOT verified water saved. Demo seed tickets are simulated and never claimed as live reports. Prototype PIN authentication must be replaced with Cognito in production.",
+      trailReported: "REPORTED",
+      trailOpen: "OPEN",
+      trailProof: "REPAIR PROOF",
+      trailClosed: "CLOSED",
+      beforePhotoBadge: "BEFORE REPAIR PHOTO",
+      afterPhotoBadge: "AFTER REPAIR (PROOF)"
     },
     hi: {
       tagline: "नगरपालिका रिसाव निवारण",
@@ -88,11 +95,11 @@
       reportBtn: "रिसाव की रिपोर्ट करें",
       queueBtn: "मरम्मत कतार देखें",
       seedBtn: "12 डेमो रिसाव दर्ज करें",
-      ledgerAddressed: "अनुमानित रिसाव रोकथाम",
+      ledgerAddressed: "अनुमानित रिसाव दर रोकथाम",
       ledgerClosed: "प्रमाण सहित बंद टिकट",
       ledgerMerged: "मर्ज की गई डुप्लिकेट रिपोर्टें",
       ledgerOpen: "कतार में खुले रिसाव",
-      ledgerDisclaimer: "अनुमानित गणना",
+      ledgerDisclaimer: "सत्यापित बचत नहीं (केवल अनुमान)",
       ledgerCedarVerified: "सीडर नीति द्वारा सत्यापित",
       ledgerWithin30m: "< 30 मीटर दूरी",
       ledgerPendingRepair: "सक्रिय कतार",
@@ -102,6 +109,7 @@
       legendSteady: "स्थिर (500-2K ली/दिन)",
       legendDrip: "टपकन (50-200 ली/दिन)",
       legendClosed: "सुधारा गया (✓)",
+      legendSimulated: "सिम्युलेटेड",
       formTitle: "रिसाव रिपोर्ट दर्ज करें",
       flowSeverity: "रिसाव की तीव्रता",
       drinkingLine: "पेयजल पाइपलाइन?",
@@ -119,9 +127,8 @@
       filterDrinking: "पेयजल लाइन",
       loadingQueue: "कतार लोड हो रही है...",
       noTicketsFound: "इस दृश्य में कोई रिसाव नहीं मिला।",
-      reportersCount: "रिपोर्टर",
-      drinkingBadge: "पेयजल लाइन",
-      nonDrinkingBadge: "गैर-पेयजल",
+      reportersCount: "नागरिक रिपोर्टें",
+      drinkingPriorityBadge: "पेयजल प्राथमिकता",
       simulatedBadge: "सिम्युलेटेड",
       whyBtn: "क्यों?",
       closeBtn: "टिकट बंद करें",
@@ -136,7 +143,13 @@
       cedarTitle: "3. सीडर नीति प्रमाणीकरण",
       cedarBody: "टिकट बंद करने के लिए इंजीनियर प्रमाणीकरण और मरम्मत के बाद का फोटो प्रमाण आवश्यक है। बंद टिकट पुनः खोलने के लिए 2 नागरिक आपत्तियां आवश्यक हैं।",
       disclaimerTitle: "4. स्पष्ट अनुमान अस्वीकरण",
-      disclaimerBody: "अनुमानित जल बचत प्राथमिकता मीट्रिक है, सत्यापित बचत नहीं। डेमो टिकट सिम्युलेटेड हैं। उत्पादन में पिन प्रमाणीकरण को कॉग्निटो से बदला जाना चाहिए।"
+      disclaimerBody: "अनुमानित जल बचत प्राथमिकता मीट्रिक है, सत्यापित बचत नहीं। डेमो टिकट सिम्युलेटेड हैं। उत्पादन में पिन प्रमाणीकरण को कॉग्निटो से बदला जाना चाहिए।",
+      trailReported: "दर्ज किया गया",
+      trailOpen: "खुला",
+      trailProof: "मरम्मत प्रमाण",
+      trailClosed: "बंद",
+      beforePhotoBadge: "मरम्मत पूर्व फोटो",
+      afterPhotoBadge: "मरम्मत पश्चात प्रमाण"
     }
   };
 
@@ -152,6 +165,7 @@
     selectedDrinking: false,
     selectedPhotoFile: null,
     tickets: [],
+    closedTickets: [], // Retains closed tickets for trail and dispute flows
     filter: "all",
     closingTicketId: null,
     closingPhotoFile: null,
@@ -277,6 +291,8 @@
       text.textContent = dict.statusOnline;
     } else if (status === "demo") {
       text.textContent = dict.statusDemo;
+    } else if (status === "error") {
+      text.textContent = dict.statusError;
     } else {
       text.textContent = dict.statusOffline;
     }
@@ -400,16 +416,20 @@
     }
   }
 
-  function renderMapTickets(tickets) {
+  function renderMapTickets(allTickets) {
     if (!leafletMap || !ticketMarkersGroup) return;
     ticketMarkersGroup.clearLayers();
 
-    tickets.forEach((t) => {
+    allTickets.forEach((t) => {
       if (!t.lat || !t.lng) return;
 
       const isClosed = t.status === "CLOSED";
       const flow = (t.flow || "drip").toLowerCase();
       let iconClass = isClosed ? "closed" : flow;
+      if (t.is_simulated) {
+        iconClass += " simulated";
+      }
+
       let label = isClosed ? "✓" : flow[0].toUpperCase();
 
       const markerIcon = L.divIcon({
@@ -426,8 +446,10 @@
         <div style="font-family: var(--font-body); padding: 4px;">
           <strong style="text-transform: uppercase;"># ${escapeHtml(t.id)}</strong><br>
           <span>Flow: ${escapeHtml(t.flow).toUpperCase()}</span><br>
+          ${t.drinking ? '<span style="color:var(--drip); font-weight:700;">🚰 DRINKING WATER LINE</span><br>' : ''}
           <span>Reporters: ${escapeHtml(t.reporters || 1)}</span><br>
-          <span>Est. Flow: ~${escapeHtml(estMidpoint)} L/d</span><br>
+          <span>Est. Flow: ~${escapeHtml(estMidpoint)} L/d (Midpoint)</span><br>
+          ${t.is_simulated ? '<span style="background:#FFE600; font-size:10px; font-weight:700; padding:1px 4px;">SIMULATED</span><br>' : ''}
           <span style="font-weight:700; color:${isClosed ? 'var(--ink)' : 'var(--drip)'}">${t.status}</span>
         </div>
       `);
@@ -488,7 +510,7 @@
     const baseUrl = getApiBaseUrl();
 
     if (!baseUrl) {
-      showToast("Cannot submit: API URL is not configured in frontend/config.js", "error");
+      showToast("API not configured. Set API URL in frontend/config.js to submit live reports.", "error");
       return;
     }
 
@@ -500,18 +522,18 @@
 
       // S3 Presigned URL Upload Flow if photo was selected
       if (state.selectedPhotoFile) {
-        showToast("Requesting secure photo upload link...", "info");
+        showToast("Requesting S3 presigned upload URL...", "info");
         const presignedData = await apiRequest("/photo-url", {
           method: "POST",
           body: JSON.stringify({ kind: "before", content_type: state.selectedPhotoFile.type || "image/jpeg" })
         });
 
         if (!presignedData.upload_url || !presignedData.key) {
-          throw new Error("Invalid presigned URL returned by server");
+          throw new Error("Invalid presigned URL response from server");
         }
 
         // Direct S3 PUT upload
-        showToast("Uploading photo to S3...", "info");
+        showToast("Uploading photo binary to S3...", "info");
         const putRes = await fetch(presignedData.upload_url, {
           method: "PUT",
           headers: {
@@ -521,7 +543,7 @@
         });
 
         if (!putRes.ok) {
-          throw new Error(`S3 photo upload failed: ${putRes.status}`);
+          throw new Error(`S3 direct PUT upload failed with status ${putRes.status}`);
         }
 
         photoKey = presignedData.key;
@@ -566,7 +588,7 @@
   }
 
   // ============================================================================
-  // SECTION 3: RANKED QUEUE & CARDS
+  // SECTION 3: RANKED QUEUE & REPAIR EVIDENCE TRAIL
   // ============================================================================
   async function loadTickets() {
     const container = document.getElementById("tickets-container");
@@ -576,11 +598,21 @@
       updateConnectionStatus("disconnected");
       if (container) {
         container.innerHTML = `
-          <div class="slab" style="padding: 32px; grid-column: 1 / -1; text-align: center;">
-            <h3 style="margin-bottom: 8px;">API NOT CONFIGURED</h3>
-            <p style="font-weight:600; color:#555;">
-              To connect live DynamoDB tickets, set <code>window.BOOND.API</code> in <code>frontend/config.js</code>.<br>
-              In offline mode, you can inspect the Spray Brutalism UI layout safely.
+          <div class="unconfigured-card">
+            <span class="unconfigured-tag">OFFLINE PREVIEW MODE</span>
+            <h3 style="font-size: 24px;">API NOT CONFIGURED</h3>
+            <p style="font-weight:600; color:#333; max-width:650px; margin:0 auto;">
+              The frontend is currently unconfigured and not connected to an AWS API Gateway endpoint.
+              Live tickets, Cedar authorization evaluations, and impact statistics require a backend URL.
+            </p>
+            <div class="unconfigured-code">
+              // To connect your backend, configure frontend/config.js:<br>
+              window.BOOND = {<br>
+              &nbsp;&nbsp;API: "https://&lt;api-id&gt;.execute-api.&lt;region&gt;.amazonaws.com"<br>
+              };
+            </div>
+            <p style="font-size:13px; color:#555; font-weight:700;">
+              No fake data or synthetic submissions will be fabricated in offline mode.
             </p>
           </div>
         `;
@@ -594,15 +626,24 @@
       const data = await apiRequest("/tickets");
       state.tickets = data.tickets || [];
       updateConnectionStatus("connected");
-      renderTickets();
-      renderMapTickets(state.tickets);
+
+      // Merge with any locally tracked closed tickets from close/seed
+      const combined = [...state.tickets];
+      state.closedTickets.forEach((ct) => {
+        if (!combined.some((t) => t.id === ct.id)) {
+          combined.push(ct);
+        }
+      });
+
+      renderTickets(combined);
+      renderMapTickets(combined);
       updateNowFixingBar(state.tickets);
 
       // Attempt GET /ledger or compute from tickets
-      await loadLedger(state.tickets);
+      await loadLedger(combined);
     } catch (err) {
       console.warn("Failed to fetch tickets from backend:", err);
-      updateConnectionStatus("disconnected");
+      updateConnectionStatus("error");
       if (container) {
         container.innerHTML = `
           <div class="slab" style="padding: 32px; grid-column: 1 / -1; text-align: center; border-color: var(--alarm);">
@@ -615,11 +656,12 @@
     }
   }
 
-  function renderTickets() {
+  function renderTickets(ticketsToRender = null) {
     const container = document.getElementById("tickets-container");
     if (!container) return;
 
-    let filtered = state.tickets;
+    const source = ticketsToRender || [...state.tickets, ...state.closedTickets];
+    let filtered = source;
     if (state.filter === "gush") {
       filtered = filtered.filter((t) => (t.flow || "").toLowerCase() === "gush");
     } else if (state.filter === "drinking") {
@@ -643,7 +685,9 @@
         const flow = (t.flow || "drip").toLowerCase();
         const estMin = t.leakage_estimate?.min_litres_per_day || 0;
         const estMax = t.leakage_estimate?.max_litres_per_day || 0;
+        const estMid = t.leakage_estimate?.midpoint_litres_per_day || 0;
         const isClosed = t.status === "CLOSED";
+        const hasAfterProof = Boolean(t.has_after_photo || t.after_photo_key || t.after_photo_url);
         const isSimulated = t.is_simulated === true;
         const disputes = t.dispute_count || 0;
 
@@ -653,30 +697,76 @@
               <div class="ticket-top-row">
                 <span class="ticket-rank-box">#${rank}</span>
                 <div class="ticket-badges">
+                  <!-- Flow Severity Badge -->
                   <span class="sticker sticker-${flow === 'gush' ? 'alarm' : flow === 'steady' ? 'drip' : 'spray'}">
-                    ${escapeHtml(flow).toUpperCase()}
+                    ${flow === 'gush' ? '💥 GUSH' : flow === 'steady' ? '🌊 STEADY' : '💧 DRIP'}
                   </span>
-                  <span class="sticker ${t.drinking ? 'sticker-drip' : 'sticker-ink'}">
-                    ${t.drinking ? 'DRINKING LINE' : 'NON-DRINKING'}
-                  </span>
+
+                  <!-- Water Priority Cue: ONLY on drinking water tickets -->
+                  ${t.drinking ? `
+                    <span class="drinking-priority-badge">
+                      🚰 ${I18N[currentLang].drinkingPriorityBadge}
+                    </span>
+                  ` : ''}
+
                   ${isClosed ? '<span class="sticker sticker-ink">CLOSED ✓</span>' : '<span class="sticker sticker-spray">OPEN</span>'}
                   ${isSimulated ? '<span class="sticker sticker-simulated">SIMULATED</span>' : ''}
                 </div>
               </div>
 
-              <div style="margin-top: 10px;">
-                <span class="ticket-id">${escapeHtml(t.id)}</span>
+              <div style="margin-top: 10px; display:flex; justify-content:space-between; align-items:center;">
+                <span class="ticket-id">ID: ${escapeHtml(t.id)}</span>
+                <span class="ticket-location-tag">📍 ${Number(t.lat || 0).toFixed(5)}°, ${Number(t.lng || 0).toFixed(5)}°</span>
               </div>
             </div>
 
-            ${t.before_photo_url ? `
-              <img src="${escapeHtml(t.before_photo_url)}" alt="Leak Photo" class="ticket-photo-thumb" loading="lazy">
-            ` : ''}
+            <!-- REPAIR EVIDENCE TRAIL: Compact progression using real backend fields -->
+            <div class="evidence-trail" aria-label="Repair Evidence Trail">
+              <div class="trail-step completed" title="Reported at ${escapeHtml(t.created_at || 'now')}">
+                <span class="trail-dot">✓</span>
+                <span class="trail-text">${I18N[currentLang].trailReported}</span>
+              </div>
+              <span class="trail-arrow">→</span>
+              <div class="trail-step ${isClosed ? 'completed' : 'active'}" title="Active in triage queue">
+                <span class="trail-dot">✓</span>
+                <span class="trail-text">${I18N[currentLang].trailOpen}</span>
+              </div>
+              <span class="trail-arrow">→</span>
+              <div class="trail-step ${hasAfterProof ? 'completed' : 'pending'}" title="${hasAfterProof ? 'After-repair photo verified' : 'Awaiting repair proof'}">
+                <span class="trail-dot">${hasAfterProof ? '✓' : '○'}</span>
+                <span class="trail-text">${I18N[currentLang].trailProof}</span>
+              </div>
+              <span class="trail-arrow">→</span>
+              <div class="trail-step ${isClosed ? 'completed' : 'pending'}" title="${isClosed ? 'Closed following Cedar authorization' : 'Pending resolution'}">
+                <span class="trail-dot">${isClosed ? '✓' : '○'}</span>
+                <span class="trail-text">${I18N[currentLang].trailClosed}</span>
+              </div>
+            </div>
 
+            <!-- Photo Evidence Grid -->
+            <div class="photo-evidence-grid">
+              ${t.before_photo_url ? `
+                <div class="photo-evidence-item">
+                  <span class="photo-badge-label">📷 ${I18N[currentLang].beforePhotoBadge}</span>
+                  <img src="${escapeHtml(t.before_photo_url)}" alt="Before repair leak photo" class="ticket-photo-thumb" loading="lazy">
+                </div>
+              ` : ''}
+
+              ${t.after_photo_url ? `
+                <div class="photo-evidence-item">
+                  <span class="photo-badge-label after">📸 ${I18N[currentLang].afterPhotoBadge}</span>
+                  <img src="${escapeHtml(t.after_photo_url)}" alt="After repair proof photo" class="ticket-photo-thumb" loading="lazy">
+                </div>
+              ` : ''}
+            </div>
+
+            <!-- Estimated Leakage Metrics -->
             <div class="ticket-metric-box">
-              <span class="ticket-rate-label">ESTIMATED FLOW RANGE</span>
+              <span class="ticket-rate-label">ESTIMATED DAILY LEAKAGE (NOT VERIFIED WATER SAVINGS)</span>
               <span class="ticket-rate-val">${Number(estMin).toLocaleString()} – ${Number(estMax).toLocaleString()} L/d</span>
-              <small style="font-size:10px; color:#555;">Priority Score: ${escapeHtml(t.priority_score || 'N/A')}</small>
+              <small style="font-size:10px; color:#555;">
+                Midpoint: ~${Number(estMid).toLocaleString()} L/d · Priority Score: ${escapeHtml(t.priority_score || 'N/A')}
+              </small>
             </div>
 
             <div class="ticket-details-row">
@@ -740,9 +830,9 @@
 
     const topTicket = openTickets[0];
     const flowText = (topTicket.flow || "drip").toUpperCase();
-    const lineText = topTicket.drinking ? "DRINKING LINE" : "NON-DRINKING";
+    const lineText = topTicket.drinking ? "DRINKING WATER PRIORITY" : "NON-DRINKING";
     const midpointEst = topTicket.leakage_estimate?.midpoint_litres_per_day
-      ? `~${Number(topTicket.leakage_estimate.midpoint_litres_per_day).toLocaleString()} L/DAY`
+      ? `~${Number(topTicket.leakage_estimate.midpoint_litres_per_day).toLocaleString()} L/DAY (EST.)`
       : "";
 
     if (textEl) {
@@ -785,10 +875,10 @@
 
     const baseUrl = getApiBaseUrl();
     if (!baseUrl) {
-      if (addressedEl) addressedEl.textContent = "API OFFLINE";
-      if (closedEl) closedEl.textContent = "0";
-      if (mergedEl) mergedEl.textContent = "0";
-      if (openEl) openEl.textContent = "0";
+      if (addressedEl) addressedEl.textContent = "—";
+      if (closedEl) closedEl.textContent = "—";
+      if (mergedEl) mergedEl.textContent = "—";
+      if (openEl) openEl.textContent = "—";
       return;
     }
 
@@ -909,7 +999,7 @@
         await executeTicketClose(state.closingTicketId, state.closingPhotoFile);
         closeModal();
       } else {
-        showToast("Engineer PIN saved in session", "success");
+        showToast("Engineer PIN stored in session", "success");
         closeModal();
         renderTickets();
       }
@@ -924,6 +1014,17 @@
         try {
           const res = await apiRequest("/seed", { method: "POST" });
           showToast(`Success: Created ${res.count || 12} simulated tickets!`, "success");
+
+          // Extract closed tickets from seeded set to demonstrate evidence trail and dispute flow
+          if (Array.isArray(res.tickets)) {
+            const closedSeeded = res.tickets.filter((t) => t.status === "CLOSED");
+            closedSeeded.forEach((ct) => {
+              if (!state.closedTickets.some((item) => item.id === ct.id)) {
+                state.closedTickets.push(ct);
+              }
+            });
+          }
+
           await loadTickets();
         } catch (err) {
           showToast(`Seeding failed: ${err.message}`, "error");
@@ -986,6 +1087,13 @@
         if (card) {
           card.classList.add("just-fixed");
         }
+
+        // Add closed ticket to local state cache so evidence trail can be viewed
+        if (closeRes.ticket) {
+          state.closedTickets = state.closedTickets.filter((t) => t.id !== ticketId);
+          state.closedTickets.push(closeRes.ticket);
+        }
+
         await loadTickets();
       }
     } catch (err) {
@@ -1021,9 +1129,14 @@
       const res = await apiRequest(`/tickets/${ticketId}/dispute`, { method: "POST" });
       if (res.status === "reopened" || res.ticket?.status === "OPEN") {
         showToast(`Cedar Policy Reopened Ticket #${ticketId}! Returned to repair queue.`, "success");
+        // Remove from closed tickets cache
+        state.closedTickets = state.closedTickets.filter((t) => t.id !== ticketId);
       } else {
         const count = res.ticket?.dispute_count || 1;
         showToast(`Dispute logged (${count}/2). Cedar policy requires 2 disputes to reopen.`, "info");
+        // Update closed ticket dispute count
+        const ct = state.closedTickets.find((t) => t.id === ticketId);
+        if (ct) ct.dispute_count = count;
       }
       await loadTickets();
     } catch (err) {
@@ -1050,7 +1163,8 @@
   function openWhyDrawer(ticketId) {
     const modal = document.getElementById("why-modal");
     const body = document.getElementById("why-modal-body");
-    const ticket = state.tickets.find((t) => t.id === ticketId);
+    const allTickets = [...state.tickets, ...state.closedTickets];
+    const ticket = allTickets.find((t) => t.id === ticketId);
 
     if (!ticket) {
       body.innerHTML = `<p>Ticket information not found.</p>`;
@@ -1066,7 +1180,8 @@
         <span class="sticker sticker-${flow === 'gush' ? 'alarm' : flow === 'steady' ? 'drip' : 'spray'}">
           ${escapeHtml(flow).toUpperCase()}
         </span>
-        <h4 style="margin-top: 8px;">TICKET ID: ${escapeHtml(ticket.id)}</h4>
+        ${ticket.drinking ? `<span class="drinking-priority-badge" style="margin-left:6px;">🚰 DRINKING WATER PRIORITY</span>` : ''}
+        <h4 style="margin-top: 10px;">TICKET ID: ${escapeHtml(ticket.id)}</h4>
       </div>
 
       <div class="drawer-row">
@@ -1086,17 +1201,22 @@
 
       <div class="drawer-row">
         <span>Reporter Volume Multiplier:</span>
-        <strong>${escapeHtml(ticket.reporters || 1)} reporters (${est.reporter_multiplier || 1.0}x)</strong>
+        <strong>${escapeHtml(ticket.reporters || 1)} citizen reports (${est.reporter_multiplier || 1.0}x)</strong>
       </div>
 
       <div class="drawer-row">
         <span>Drinking Water Multiplier:</span>
-        <strong>${ticket.drinking ? '1.5x (Priority Water Line)' : '1.0x (Standard)'}</strong>
+        <strong>${ticket.drinking ? '1.5x (Priority Drinking Water Line)' : '1.0x (Standard Line)'}</strong>
       </div>
 
       <div class="drawer-row">
         <span>Dispute Count:</span>
         <strong>${escapeHtml(ticket.dispute_count || 0)} / 2 required to reopen</strong>
+      </div>
+
+      <div class="drawer-row">
+        <span>Status / Evidence:</span>
+        <strong>${ticket.status === 'CLOSED' ? 'CLOSED (Proof Verified)' : 'ACTIVE TRIAGE (OPEN)'}</strong>
       </div>
 
       <div class="policy-reference-box">
