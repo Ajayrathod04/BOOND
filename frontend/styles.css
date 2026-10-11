@@ -1995,14 +1995,14 @@ input:checked + .toggle-slider:before {
 }
 
 .demo-mode-banner {
-  padding: 12px 16px;
-  background: #FFFDE7;
-  border: var(--border-thick);
-  border-left: 6px solid var(--spray);
+  padding: 8px 14px;
+  background: var(--paper-warm);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--water);
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow: var(--shadow-sm);
+  font-size: 12px;
 }
 
 /* Reduced Motion Override */

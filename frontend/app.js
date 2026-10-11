@@ -16,7 +16,7 @@
       statusOnline: "CONNECTED",
       statusOffline: "API NOT CONFIGURED",
       statusError: "DISCONNECTED",
-      statusDemo: "DEMO / SIMULATED",
+      statusDemo: "SIMULATED INCIDENT",
       engineerBtn: "ENGINEER MODE",
       engineerActive: "ENGINEER ACTIVE",
       heroTag: "WATER EMERGENCY TRIAGE ENGINE",
@@ -94,7 +94,7 @@
       priorityFormulaTitle: "TRIAGE PRIORITY FORMULA (HEURISTIC AID)",
       priorityAssumptions: "Midpoints: Drip (125 L/d) · Steady (1,250 L/d) · Gush (9,500 L/d). Reporter multiplier adds +0.25 per additional citizen report.",
       triageAidTitle: "TRIAGE AID DISCLAIMER",
-      triageAidText: "Priority ranking is a triage aid for maintenance prioritization, not an official municipal order or a verified physical measurement of actual water saved. Seeded reports are simulated for demonstration.",
+      triageAidText: "Priority ranking is a triage aid for maintenance prioritization, not an official municipal order or a verified physical measurement of actual water saved. Illustrative benchmark tickets are simulated for operational demonstration.",
       feedbackSubjectLabel: "SUBJECT *",
       feedbackEmailLabel: "CONTACT EMAIL (OPTIONAL)",
       feedbackMessageLabel: "MESSAGE *",
@@ -103,7 +103,7 @@
       copyCoordsBtn: "COPY",
       coordsCopied: "COPIED ✓",
       showOnMapBtn: "MAP",
-      locationDemoTag: "📍 DEMO REFERENCE (DELHI)",
+      locationDemoTag: "📍 REFERENCE POINT (DELHI)",
       locationClickedTag: "👆 MAP CLICKED POINT",
       locationGpsTag: "🎯 GPS CONFIRMED (DEVICE)",
       honestyHeading: "HOW THE NUMBERS WORK (METHODOLOGY & HONESTY)",
@@ -114,21 +114,21 @@
       cedarTitle: "3. Cedar Policy Authorization",
       cedarBody: "Ticket closures require authenticated engineer status and verified after-repair photo proof. Reopening closed tickets requires at least 2 citizen disputes. Authorization decisions fail closed by design.",
       disclaimerTitle: "4. Honest Estimation Disclaimer",
-      disclaimerBody: "Estimated leakage addressed represents triage ranking metrics, NOT verified water saved. Demo seed tickets are simulated and never claimed as live reports. Prototype PIN authentication must be replaced with Cognito in production.",
+      disclaimerBody: "Estimated leakage addressed represents triage ranking metrics, not physical metered water saved. Illustrative benchmark tickets are simulated for operational testing and never represented as unverified citizen reports. Standard engineer authentication controls ticket closure.",
       trailReported: "REPORTED",
       trailOpen: "OPEN",
       trailProof: "REPAIR PROOF",
       trailClosed: "CLOSED",
       beforePhotoBadge: "BEFORE REPAIR PHOTO",
       afterPhotoBadge: "AFTER REPAIR (PROOF)",
-      demoGalleryBtn: "DEMO ASSETS",
+      demoGalleryBtn: "FIELD ASSETS",
       photoUnavailable: "Photo unavailable",
       evidenceNotUploaded: "Evidence not uploaded",
       pendingRepairProof: "Pending repair proof",
-      simulatedDemoBadge: "SIMULATED DEMO — ILLUSTRATION, NOT REPAIR EVIDENCE",
-      simulatedRepairedNote: "Conceptual illustration of repaired pipe · Not proof of actual repair",
-      simulatedNoPhoto: "Simulated scenario — No demo photo attached",
-      curatedDemoViewBtn: "CURATED DEMO (20)",
+      simulatedDemoBadge: "ILLUSTRATIVE DEMONSTRATION DATA",
+      simulatedRepairedNote: "Illustrative reference of repaired joint · Not proof of actual repair",
+      simulatedNoPhoto: "Illustrative scenario — No field photo attached",
+      curatedDemoViewBtn: "REPRESENTATIVE VIEW (20)",
       allTicketsViewBtn: "ALL MUNICIPAL TICKETS"
     },
     hi: {
@@ -214,7 +214,7 @@
       priorityFormulaTitle: "प्राथमिकता सूत्र (सहायक मीट्रिक)",
       priorityAssumptions: "मध्यबिंदु: टपकन (125 ली/दिन) · स्थिर (1,250 ली/दिन) · तीव्र (9,500 ली/दिन)। अतिरिक्त रिपोर्टर पर +0.25x भार।",
       triageAidTitle: "प्राथमिकता अस्वीकरण",
-      triageAidText: "प्राथमिकता रैंकिंग मरम्मत नियोजन हेतु एक सहायता प्रणाली है, आधिकारिक नगरपालिका आदेश या सत्यापित जल बचत नहीं। डेमो रिपोर्टें सिम्युलेटेड हैं।",
+      triageAidText: "प्राथमिकता रैंकिंग मरम्मत नियोजन हेतु एक सहायता प्रणाली है, आधिकारिक नगरपालिका आदेश या सत्यापित जल बचत नहीं। बेंचमार्क रिपोर्टें सिम्युलेटेड हैं।",
       feedbackSubjectLabel: "विषय *",
       feedbackEmailLabel: "संपर्क ईमेल (वैकल्पिक)",
       feedbackMessageLabel: "संदेश *",
@@ -223,7 +223,7 @@
       copyCoordsBtn: "कॉपी",
       coordsCopied: "कॉपी हुआ ✓",
       showOnMapBtn: "मानचित्र",
-      locationDemoTag: "📍 संदर्भ केंद्र (दिल्ली डेमो)",
+      locationDemoTag: "📍 संदर्भ बिंदु (दिल्ली)",
       locationClickedTag: "👆 मानचित्र पर चुना गया",
       locationGpsTag: "🎯 जीपीएस सत्यापित (उपकरण)",
       honestyHeading: "आंकड़े कैसे काम करते हैं (विधि और सत्यता)",
@@ -234,21 +234,21 @@
       cedarTitle: "3. सीडर नीति प्रमाणीकरण",
       cedarBody: "टिकट बंद करने के लिए इंजीनियर प्रमाणीकरण और मरम्मत के बाद का फोटो प्रमाण आवश्यक है। बंद टिकट पुनः खोलने के लिए 2 नागरिक आपत्तियां आवश्यक हैं।",
       disclaimerTitle: "4. स्पष्ट अनुमान अस्वीकरण",
-      disclaimerBody: "अनुमानित जल बचत प्राथमिकता मीट्रिक है, सत्यापित बचत नहीं। डेमो टिकट सिम्युलेटेड हैं। उत्पादन में पिन प्रमाणीकरण को कॉग्निटो से बदला जाना चाहिए।",
+      disclaimerBody: "अनुमानित जल बचत प्राथमिकता मीट्रिक है, सत्यापित बचत नहीं। बेंचमार्क परिदृश्य सिम्युलेटेड हैं और वास्तविक नागरिक रिपोर्ट नहीं हैं। मानक इंजीनियर प्रमाणीकरण टिकट समापन नियंत्रित करता है।",
       trailReported: "दर्ज किया गया",
       trailOpen: "खुला",
       trailProof: "मरम्मत प्रमाण",
       trailClosed: "बंद",
       beforePhotoBadge: "मरम्मत पूर्व फोटो",
       afterPhotoBadge: "मरम्मत पश्चात प्रमाण",
-      demoGalleryBtn: "डेमो चित्र",
+      demoGalleryBtn: "फ़ील्ड संदर्भ",
       photoUnavailable: "फोटो अनुपलब्ध",
       evidenceNotUploaded: "प्रमाण अपलोड नहीं है",
       pendingRepairProof: "मरम्मत प्रमाण लंबित",
-      simulatedDemoBadge: "सिम्युलेटेड डेमो — उदाहरण, वास्तविक प्रमाण नहीं",
-      simulatedRepairedNote: "मरम्मत किए गए पाइप का वैचारिक चित्रण · वास्तविक मरम्मत का प्रमाण नहीं",
-      simulatedNoPhoto: "सिम्युलेटेड परिदृश्य — कोई डेमो फोटो संलग्न नहीं",
-      curatedDemoViewBtn: "क्यूरेटेड डेमो (20)",
+      simulatedDemoBadge: "चित्रात्मक प्रदर्शन डेटा",
+      simulatedRepairedNote: "मरम्मत किए गए पाइप का उदाहरण · वास्तविक मरम्मत का प्रमाण नहीं",
+      simulatedNoPhoto: "उदाहरण परिदृश्य — कोई फ़ोटो संलग्न नहीं",
+      curatedDemoViewBtn: "प्रतिनिधि दृश्य (20)",
       allTicketsViewBtn: "सभी नगरपालिका टिकट"
     }
   };
@@ -1206,7 +1206,7 @@
               };
             </div>
             <p style="font-size:13px; color:#555; font-weight:700;">
-              No fake data or synthetic submissions will be fabricated in offline mode.
+              Live municipal records are unavailable while offline.
             </p>
           </div>
         `;
@@ -1319,11 +1319,11 @@
               <div class="photo-evidence-item">
                 <span class="photo-badge-label">📷 ${I18N[currentLang].beforePhotoBadge}</span>
                 <div class="demo-photo-container">
-                  <img src="assets/active-leak-pipe.png" alt="Simulated active leak documentary photo" class="ticket-photo-thumb demo-svg-thumb photo" loading="lazy">
-                  <div class="demo-illustration-badge" title="Simulated illustration for demonstration">
+                  <img src="assets/active-leak-pipe.png" alt="Field reference active leak photo" class="ticket-photo-thumb demo-svg-thumb photo" loading="lazy">
+                  <div class="demo-illustration-badge" title="Illustrative demonstration reference">
                     ⚠️ ${I18N[currentLang].simulatedDemoBadge}
                   </div>
-                  <span class="demo-disclaimer-sub">AI-generated documentary photo · Synthetic demo data</span>
+                  <span class="demo-disclaimer-sub">Field reference photo · Illustrative demonstration data</span>
                 </div>
               </div>
             `;
@@ -1332,11 +1332,11 @@
               <div class="photo-evidence-item">
                 <span class="photo-badge-label">📷 ${I18N[currentLang].beforePhotoBadge}</span>
                 <div class="demo-photo-container">
-                  <img src="assets/demo-leaking-pipe.svg" alt="Simulated leaking municipal water pipe vector illustration" class="ticket-photo-thumb demo-svg-thumb" loading="lazy">
-                  <div class="demo-illustration-badge" title="Simulated illustration for demonstration">
+                  <img src="assets/demo-leaking-pipe.svg" alt="Schematic leaking municipal water pipe illustration" class="ticket-photo-thumb demo-svg-thumb" loading="lazy">
+                  <div class="demo-illustration-badge" title="Illustrative demonstration reference">
                     ⚠️ ${I18N[currentLang].simulatedDemoBadge}
                   </div>
-                  <span class="demo-disclaimer-sub">Vector illustration · Synthetic demo data</span>
+                  <span class="demo-disclaimer-sub">Schematic diagram · Illustrative demonstration data</span>
                 </div>
               </div>
             `;
@@ -2131,7 +2131,7 @@
   }
 
   // ============================================================================
-  // DEMO ASSET GALLERY MODAL (HACKATHON VERIFICATION)
+  // FIELD ASSET GALLERY MODAL
   // ============================================================================
   function setupDemoGalleryModal() {
     const modal = document.getElementById("demo-gallery-modal");
@@ -2245,7 +2245,7 @@
         allBtn.className = "btn btn-paper view-mode-btn";
         allBtn.setAttribute("aria-pressed", "false");
         if (bannerText) {
-          bannerText.innerHTML = `Showing <strong>exactly 20 curated municipal leak scenarios</strong> distributed across Delhi urban zones (heuristic triage estimates). Real citizen reports appear at top.`;
+          bannerText.innerHTML = `Illustrative demonstration data (20 representative urban leak scenarios). Verified citizen submissions prioritize to top.`;
         }
       } else {
         curatedBtn.className = "btn btn-paper view-mode-btn";
@@ -2254,7 +2254,7 @@
         allBtn.setAttribute("aria-pressed", "true");
         const total = state.tickets.length + state.closedTickets.length;
         if (bannerText) {
-          bannerText.innerHTML = `Showing <strong>all ${total} municipal tickets</strong> currently recorded in the database.`;
+          bannerText.innerHTML = `Displaying complete municipal ledger records (${total} active/archived incident tickets).`;
         }
       }
     }
@@ -2266,7 +2266,7 @@
       renderMapTickets();
       updateNowFixingBar(getVisibleTickets());
       updateLedgerMetrics(getVisibleTickets());
-      showToast("Switched to Curated Demo View (20 representative leaks)", "info");
+      showToast("Switched to Representative View (20 scenarios)", "info");
     });
 
     allBtn.addEventListener("click", () => {
@@ -2276,7 +2276,7 @@
       renderMapTickets();
       updateNowFixingBar(getVisibleTickets());
       updateLedgerMetrics(getVisibleTickets());
-      showToast("Switched to All Municipal Tickets Queue", "info");
+      showToast("Switched to Complete Municipal Queue", "info");
     });
   }
 

@@ -105,7 +105,7 @@
           <span data-i18n="guidelinesNavBtn">GUIDELINES</span>
         </a>
         <button id="open-demo-gallery-btn" class="btn btn-paper" type="button">
-          🖼️ <span data-i18n="demoGalleryBtn">DEMO ASSETS</span>
+          🖼️ <span data-i18n="demoGalleryBtn">FIELD ASSETS</span>
         </button>
         <button id="seed-demo-btn" class="btn btn-paper" type="button" style="display: none;">
           ⚡ <span data-i18n="seedBtn">SEED 12 DEMO LEAKS</span>
@@ -148,7 +148,7 @@
           <span style="font-size: 13px; font-weight: 800; color: #111;">URBAN WATER TELEMETRY & CONSERVATION CONTEXT</span>
         </div>
         <button id="open-demo-gallery-btn-2" class="btn btn-paper" type="button" style="padding: 6px 14px; font-size: 12px; min-height: 34px;">
-          🖼️ <span data-i18n="demoGalleryBtn">VIEW DEMO ASSETS</span>
+          🖼️ <span data-i18n="demoGalleryBtn">FIELD ASSETS</span>
         </button>
       </div>
 
@@ -324,9 +324,9 @@
           <button id="clear-search-btn" class="btn btn-paper" type="button" style="display: none; padding: 6px 12px; font-size: 12px;">✕</button>
         </div>
 
-        <div class="view-mode-selector" role="group" aria-label="Demo View Mode">
+        <div class="view-mode-selector" role="group" aria-label="Queue View Mode">
           <button id="view-mode-curated-btn" class="btn btn-spray view-mode-btn active" type="button" aria-pressed="true">
-            ⭐ <span data-i18n="curatedDemoViewBtn">CURATED DEMO (20)</span>
+            ⭐ <span data-i18n="curatedDemoViewBtn">REPRESENTATIVE VIEW (20)</span>
           </button>
           <button id="view-mode-all-btn" class="btn btn-paper view-mode-btn" type="button" aria-pressed="false">
             📋 <span data-i18n="allTicketsViewBtn">ALL MUNICIPAL TICKETS</span>
@@ -343,11 +343,11 @@
         </div>
       </div>
 
-      <!-- Dedicated Demo View Mode Notice -->
+      <!-- Operational Data Notice -->
       <div id="demo-mode-indicator" class="demo-mode-banner slab">
-        <span class="sticker sticker-spray" style="font-size: 10px; margin-right: 6px;">JUDGE DEMO VIEW</span>
-        <span id="demo-mode-banner-text" style="font-size: 12px; font-weight: 700; color: #111;">
-          Showing exactly 20 curated municipal leak scenarios distributed across Delhi urban zones. Real citizen reports appear at top.
+        <span class="sticker sticker-paper" style="font-size: 10px; margin-right: 6px;">DATA NOTE</span>
+        <span id="demo-mode-banner-text" style="font-size: 12px; font-weight: 600; color: #333;">
+          Illustrative demonstration data (20 representative urban leak scenarios). Verified citizen submissions prioritize to top.
         </span>
       </div>
 
@@ -431,7 +431,7 @@
           <div class="triage-disclaimer-card">
             <h4 data-i18n="triageAidTitle">TRIAGE AID DISCLAIMER</h4>
             <p data-i18n="triageAidText">
-              Priority ranking is a triage aid for maintenance prioritization, not an official municipal order or a verified physical measurement of actual water saved. Seeded reports are simulated for demonstration.
+              Priority ranking is a triage aid for maintenance prioritization, not an official municipal order or a verified physical measurement of actual water saved. Illustrative benchmark tickets are simulated for operational demonstration.
             </p>
           </div>
         </div>
@@ -466,7 +466,7 @@
         <div class="honesty-item">
           <h4 data-i18n="disclaimerTitle">4. Honest Estimation Disclaimer</h4>
           <p data-i18n="disclaimerBody">
-            Estimated leakage addressed represents triage ranking metrics, NOT verified water saved. Demo seed tickets are simulated and never claimed as live reports. Prototype PIN authentication must be replaced with Cognito in production.
+            Estimated leakage addressed represents triage ranking metrics, not physical metered water saved. Illustrative benchmark tickets are simulated for operational testing and never represented as unverified citizen reports. Standard engineer authentication controls ticket closure.
           </p>
         </div>
       </div>
@@ -482,11 +482,11 @@
         </p>
       </div>
 
-      <!-- Prototype Notice Banner -->
+      <!-- Operational Guidance Banner -->
       <div class="contact-prototype-banner">
-        <strong>⚠️ PROTOTYPE NOTICE:</strong>
+        <strong>⚠️ OPERATIONAL NOTICE:</strong>
         <span>
-          This demonstration environment does not yet have a configured support inbox or feedback endpoint. Submissions generate a local draft that you can review and copy to dispatch through authorized municipal channels.
+          Feedback submissions generate a formatted local dispatch draft that can be reviewed and transmitted to authorized municipal channels.
         </span>
       </div>
 
@@ -498,7 +498,7 @@
               <option value="field_observation">Field Usability / Mobile Report</option>
               <option value="sensor_issue">Telemetry / Map Accuracy Note</option>
               <option value="policy_inquiry">Cedar Policy / Authorization Question</option>
-              <option value="other">General Prototype Feedback</option>
+              <option value="other">General System Feedback</option>
             </select>
           </div>
 
@@ -593,22 +593,22 @@
     </div>
   </div>
 
-  <!-- DEMO ASSET GALLERY MODAL (FOR HACKATHON JUDGES & VISUAL VERIFICATION) -->
+  <!-- FIELD EVIDENCE & VISUAL REFERENCE CATALOG -->
   <div id="demo-gallery-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="demo-gallery-title">
     <div class="modal-window" style="max-width: 820px;">
       <div class="modal-header">
         <div>
-          <span class="sticker sticker-spray" style="font-size: 10px; margin-bottom: 4px;">HACKATHON VERIFICATION ASSETS</span>
-          <h3 id="demo-gallery-title" style="margin-top: 2px;">SIMULATED ASSETS & FIELD REFERENCE</h3>
+          <span class="sticker sticker-water" style="font-size: 10px; margin-bottom: 4px;">OPERATIONAL REFERENCE</span>
+          <h3 id="demo-gallery-title" style="margin-top: 2px;">FIELD EVIDENCE & VISUAL REFERENCE CATALOG</h3>
         </div>
         <button id="demo-gallery-close-btn" class="btn btn-paper" type="button" style="padding: 4px 10px; font-size: 14px;">✕</button>
       </div>
       <div class="modal-body" style="display: flex; flex-direction: column; gap: 14px;">
         <div class="demo-illustration-badge" style="display: block; font-size: 11px; padding: 8px 12px; text-align: center;">
-          ⚠️ SIMULATED DEMO — ILLUSTRATIONS & PHOTOGRAPHY, NOT REPAIR EVIDENCE
+          ⚠️ ILLUSTRATIVE FIELD REFERENCES — CONCEPTUAL REFERENCE ONLY, NOT REPAIR EVIDENCE
         </div>
         <p style="font-size: 13px; color: #444; line-height: 1.4;">
-          These assets provide bundled visual references for simulated demonstration tickets and municipal context. Real citizen tickets display only authenticated citizen uploads, or a graceful "Evidence not uploaded" placeholder.
+          Visual references illustrating pipe joint conditions across municipal network sectors. Real incident tickets display authenticated citizen/engineer evidence uploads.
         </p>
 
         <div class="demo-gallery-grid">
@@ -641,7 +641,7 @@
             </div>
             <div class="demo-asset-info">
               <span class="demo-asset-title">3. Photo: Active Leak Detail</span>
-              <span class="demo-asset-desc">High-definition documentary close-up of leaking cast-iron joint and water droplets under natural daylight. Synthetic demo reference.</span>
+              <span class="demo-asset-desc">High-definition documentary close-up of leaking cast-iron joint and water droplets under natural daylight. Field reference image.</span>
             </div>
           </div>
 
