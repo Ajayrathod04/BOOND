@@ -7,8 +7,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Bowlby+One&family=Rubik+Spray+Paint&family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* Water-First Palette */
-  --paper: #F2F0E8;
+  /* Water-First Palette & Restrained Warm Cream Theme */
+  --paper: #FAF8F2;
+  --paper-card: #FFFFFF;
+  --paper-warm: #F4EFE6;
   --ink: #000000;
   --water-primary: #1769AA;
   --water-pale: #E8F5FF;
@@ -1210,6 +1212,12 @@ input:checked + .toggle-slider:before {
   gap: 8px;
 }
 
+@media (min-width: 480px) {
+  .photo-evidence-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 .photo-evidence-item {
   display: flex;
   flex-direction: column;
@@ -1239,6 +1247,84 @@ input:checked + .toggle-slider:before {
   border: 2px solid var(--ink);
   box-shadow: 2px 2px 0 var(--ink);
   background: #E5E3DB;
+  display: block;
+}
+
+.ticket-photo-thumb.demo-svg-thumb {
+  background: #F4F1EA;
+  object-fit: contain;
+}
+
+/* Graceful Photo Placeholders (Safe for Missing / Failed Evidence) */
+.photo-placeholder-box {
+  height: 120px;
+  border: 2px dashed #888888;
+  background: var(--paper-warm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.photo-placeholder-box.simulated {
+  border-color: #B8A882;
+  background: #FDFBF7;
+}
+
+.photo-placeholder-box.pending {
+  border-color: #6A8CA8;
+  background: var(--water-pale);
+}
+
+.photo-placeholder-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.photo-placeholder-text {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #444444;
+  letter-spacing: 0.3px;
+  line-height: 1.2;
+}
+
+/* Demo Photo Container & Illustration Disclaimers */
+.demo-photo-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.demo-illustration-badge {
+  background: #FFF3CD;
+  color: #664D03;
+  border: 1px solid #FFE69C;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 3px 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  line-height: 1.2;
+  box-shadow: 1px 1px 0 rgba(0,0,0,0.15);
+}
+
+.demo-illustration-badge.demo-repaired {
+  background: #D1E7DD;
+  color: #0F5132;
+  border-color: #BADBCC;
+}
+
+.demo-disclaimer-sub {
+  font-size: 9px;
+  color: #666666;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
 .ticket-actions-row {
@@ -1724,6 +1810,199 @@ input:checked + .toggle-slider:before {
   background: #FFFFFF;
   padding: 2px 6px;
   border: 1px solid var(--ink);
+}
+
+/* SECTION: Municipal Water Infrastructure Context (Realistic Assets) */
+.infra-context-slab {
+  padding: 20px 24px;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.infra-context-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 12px;
+}
+
+.infra-context-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+@media (min-width: 768px) {
+  .infra-context-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.infra-context-card {
+  border: 2px solid var(--ink);
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--shadow-subtle);
+}
+
+.infra-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  background: #222B35;
+}
+
+.infra-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.infra-img-tag {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: var(--ink);
+  color: #FFFFFF;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.infra-card-body {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.infra-card-body h4 {
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.infra-card-body p {
+  font-size: 13px;
+  color: #444444;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.infra-context-footer {
+  padding-top: 6px;
+  border-top: 1px dashed #CCCCCC;
+}
+
+/* Demo Asset Gallery Modal */
+.demo-gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .demo-gallery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.demo-asset-card {
+  border: 2px solid var(--ink);
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.demo-asset-img-box {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  background: #F4F1EA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.demo-asset-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.demo-asset-img.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.demo-asset-info {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.demo-asset-title {
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.demo-asset-desc {
+  font-size: 11px;
+  color: #555555;
+  line-height: 1.3;
+}
+
+/* CURATED DEMO VIEW MODE CONTROLS */
+.view-mode-selector {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.view-mode-btn {
+  font-size: 13px;
+  font-weight: 800;
+  padding: 8px 14px;
+  min-height: 38px;
+  border: var(--border-thick);
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.view-mode-btn.active {
+  background: var(--spray);
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+  outline: 2px solid var(--ink);
+}
+
+.demo-mode-banner {
+  padding: 12px 16px;
+  background: #FFFDE7;
+  border: var(--border-thick);
+  border-left: 6px solid var(--spray);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow-sm);
 }
 
 /* Reduced Motion Override */

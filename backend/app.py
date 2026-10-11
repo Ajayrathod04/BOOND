@@ -1,5 +1,5 @@
-"""
-BOOND — Backend Lambda Application
+﻿"""
+BOOND â€” Backend Lambda Application
 API Gateway HTTP API v2 Compatible Handler for Water-Leak Reporting & Triage.
 
 Endpoints:
@@ -27,11 +27,18 @@ from typing import Any, Dict, List, Optional, Tuple
 import boto3
 from botocore.exceptions import ClientError
 
-from backend.policy import (
-    authorize_close_ticket,
-    authorize_reopen_ticket,
-    evaluate_authorization,
-)
+try:
+    from policy import (
+        authorize_close_ticket,
+        authorize_reopen_ticket,
+        evaluate_authorization,
+    )
+except ModuleNotFoundError:
+    from backend.policy import (
+        authorize_close_ticket,
+        authorize_reopen_ticket,
+        evaluate_authorization,
+    )
 
 logger = logging.getLogger("boond.app")
 logger.setLevel(logging.INFO)
@@ -219,9 +226,9 @@ def calculate_priority(
     Computes priority triage score and estimated leakage range.
 
     Leakage Rate Ranges (Litres / Day):
-    - Drip: 50 – 200 L/d (Midpoint: 125)
-    - Steady: 500 – 2,000 L/d (Midpoint: 1,250)
-    - Gush: 4,000 – 15,000 L/d (Midpoint: 9,500)
+    - Drip: 50 â€“ 200 L/d (Midpoint: 125)
+    - Steady: 500 â€“ 2,000 L/d (Midpoint: 1,250)
+    - Gush: 4,000 â€“ 15,000 L/d (Midpoint: 9,500)
 
     Score formula:
     score = midpoint * (1.5 if drinking else 1.0) * (1.0 + 0.25 * (reporters - 1))
@@ -834,3 +841,5 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             500,
             {"error": "InternalServerError", "message": str(exc)},
         )
+
+
