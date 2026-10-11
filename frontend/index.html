@@ -52,18 +52,47 @@
   <!-- Main Container -->
   <main class="main-wrapper">
 
-    <!-- SECTION 1: HERO (Refined Water-First Hierarchy) -->
+    <!-- SECTION 1: HERO (Refined Water-First Hierarchy & Motion) -->
     <section class="hero-slab">
       <div class="hero-header-line">
-        <span class="hero-tag" data-i18n="heroTag">WATER NETWORK TRIAGE ENGINE</span>
-        <span class="sticker sticker-spray" style="font-size: 11px;">MUNICIPAL PROTOCOL</span>
+        <span class="hero-tag" data-i18n="heroTag">WATER EMERGENCY TRIAGE ENGINE</span>
+        <span class="sticker sticker-spray" data-i18n="heroProtocol">MUNICIPAL PROTOCOL</span>
       </div>
-      <h1 class="hero-title">
-        <span class="hero-title-main" data-i18n="heroTitle">EVERY LEAK. RANKED.</span>
-      </h1>
-      <p class="hero-pitch" data-i18n="heroPitch">
-        Turn scattered leak reports into the next repair that matters.
-      </p>
+
+      <div class="hero-main-row">
+        <div class="hero-text-block">
+          <h1 class="hero-title">
+            <span class="hero-title-main" data-i18n="heroTitle"># EVERY LEAK. RANKED.</span>
+          </h1>
+          <p class="hero-pitch" data-i18n="heroPitch">
+            Turn scattered leak reports into the next repair that matters.
+          </p>
+        </div>
+
+        <!-- BOOND Water-Drop Mascot ("Boondy") & Ripple Motif -->
+        <div class="hero-mascot-wrapper" aria-hidden="true">
+          <div class="hero-water-motif">
+            <div class="wave wave1"></div>
+            <div class="wave wave2"></div>
+          </div>
+          <div id="boondy-mascot-box" class="mascot-box" title="BOOND Field Assistant">
+            <svg class="boondy-svg" viewBox="0 0 100 110" width="76" height="84" xmlns="http://www.w3.org/2000/svg">
+              <!-- Water droplet body with thick ink outline -->
+              <path class="boondy-body" d="M50 10 C50 10 18 52 18 74 C18 92 32 104 50 104 C68 104 82 92 82 74 C82 52 50 10 50 10 Z" fill="#E8F5FF" stroke="#000000" stroke-width="4" stroke-linejoin="round"/>
+              <!-- Water specular curve -->
+              <path d="M32 68 C30 58 38 42 46 32" stroke="#1769AA" stroke-width="3" stroke-linecap="round" fill="none"/>
+              <!-- Cheerful eyes -->
+              <circle class="boondy-eye left" cx="40" cy="70" r="3.5" fill="#000000"/>
+              <circle class="boondy-eye right" cx="60" cy="70" r="3.5" fill="#000000"/>
+              <!-- Smile -->
+              <path class="boondy-smile" d="M44 80 Q50 86 56 80" stroke="#000000" stroke-width="3" stroke-linecap="round" fill="none"/>
+              <!-- Field tool / wrench accent -->
+              <rect x="66" y="80" width="14" height="6" rx="2" fill="#5DF23B" stroke="#000000" stroke-width="2" transform="rotate(-25 66 80)"/>
+            </svg>
+            <span id="mascot-bubble" class="mascot-speech">FIELD READY</span>
+          </div>
+        </div>
+      </div>
 
       <div class="hero-actions">
         <a href="#report-section" class="btn btn-water">
@@ -71,6 +100,9 @@
         </a>
         <a href="#queue-section" class="btn btn-paper">
           <span data-i18n="queueBtn">VIEW REPAIR QUEUE</span>
+        </a>
+        <a href="#guidelines-section" class="btn btn-paper">
+          <span data-i18n="guidelinesNavBtn">GUIDELINES</span>
         </a>
         <button id="seed-demo-btn" class="btn btn-paper" type="button" style="display: none;">
           ⚡ <span data-i18n="seedBtn">SEED 12 DEMO LEAKS</span>
@@ -108,11 +140,14 @@
     <!-- SECTION 2: MAP AND REPORT FORM (BENTO LAYOUT) -->
     <section id="report-section" class="bento-reporting-grid">
       
-      <!-- Interactive Leaflet Map Card -->
+      <!-- Interactive Leaflet Map Card (Black Municipal Header) -->
       <div class="slab map-card">
-        <div class="card-header">
-          <h2 data-i18n="mapHeader">MUNICIPAL LEAK MAP</h2>
-          <button id="locate-me-btn" class="btn btn-paper" type="button" style="padding: 6px 12px; font-size: 12px;">
+        <div class="card-header map-header-black">
+          <div class="map-header-title">
+            <span class="map-header-dot" aria-hidden="true"></span>
+            <h2 data-i18n="mapHeader">MUNICIPAL LEAK MAP</h2>
+          </div>
+          <button id="locate-me-btn" class="btn btn-locate" type="button">
             🎯 <span data-i18n="locateBtn">USE MY LOCATION</span>
           </button>
         </div>
@@ -146,9 +181,16 @@
 
       <!-- Report Form Card -->
       <div class="slab form-card">
-        <h2 data-i18n="formTitle">REPORT LEAK</h2>
+        <div class="card-header map-header-black">
+          <div class="map-header-title">
+            <span class="map-header-dot" style="background: var(--spray);" aria-hidden="true"></span>
+            <h2 data-i18n="formTitle">REPORT LEAK</h2>
+          </div>
+          <span class="sticker sticker-spray" style="font-size: 11px;">CITIZEN INTAKE</span>
+        </div>
 
-        <!-- Flow Severity Selector (Chunky 3-way selector) -->
+        <div class="form-card-body">
+          <!-- Flow Severity Selector (Chunky 3-way selector) -->
         <div class="form-group">
           <label class="form-label" data-i18n="flowSeverity">OBSERVED FLOW SEVERITY</label>
           <div class="flow-selector-group" role="radiogroup" aria-label="Flow Severity">
@@ -178,13 +220,21 @@
           </div>
         </div>
 
-        <!-- Coordinates Box -->
+        <!-- Coordinates Box with Explicit Position Source -->
         <div class="form-group">
-          <label class="form-label" data-i18n="coordsLabel">SELECTED LOCATION (CLICK MAP)</label>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <label class="form-label" data-i18n="coordsLabel">SELECTED LOCATION</label>
+            <span id="coords-source-tag" class="sticker sticker-paper" style="font-size: 10px;">
+              📍 DEMO REFERENCE (DELHI)
+            </span>
+          </div>
           <div class="coords-display">
             <span id="coords-text">Lat: 28.61390, Lng: 77.20900</span>
             <span class="sticker sticker-spray" data-i18n="readyTag">READY</span>
           </div>
+          <small id="coords-guidance" style="font-size: 11px; color: #555;">
+            Click map or use "Use My Location" to record GPS coordinates.
+          </small>
         </div>
 
         <!-- Photo Capture / Upload -->
@@ -201,6 +251,7 @@
           🚀 <span data-i18n="submitReportBtn">SUBMIT LEAK REPORT</span>
         </button>
       </div>
+    </div>
 
     </section>
 
@@ -212,10 +263,29 @@
           <h2 class="queue-title" data-i18n="queueHeading">FIX THIS FIRST</h2>
         </div>
 
-        <div class="queue-filter-row">
-          <button class="btn filter-btn active" data-filter="all" type="button" data-i18n="filterAll">ALL TICKETS</button>
-          <button class="btn filter-btn" data-filter="gush" type="button" data-i18n="filterGush">GUSH ONLY</button>
+        <!-- Last Updated Status Indicator & Refresh Action -->
+        <div class="queue-status-bar">
+          <span id="queue-last-updated" class="last-updated-text" data-i18n="queueUpdated">Last updated: Waiting for refresh...</span>
+          <button id="refresh-queue-btn" class="btn btn-paper btn-refresh" type="button" title="Refresh queue and ledger" aria-label="Refresh repair queue">
+            🔄 <span data-i18n="refreshBtn">REFRESH</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Search & Extended Field Filter Toolbar -->
+      <div class="queue-toolbar slab">
+        <div class="queue-search-box">
+          <input type="search" id="ticket-search-input" class="ticket-search-input" placeholder="🔍 Search ID, flow, location..." aria-label="Search repair queue" data-i18n-placeholder="searchPlaceholder">
+          <button id="clear-search-btn" class="btn btn-paper" type="button" style="display: none; padding: 6px 12px; font-size: 12px;">✕</button>
+        </div>
+
+        <div class="queue-filter-row" role="group" aria-label="Filter Queue">
+          <button class="btn filter-btn active" data-filter="all" type="button" data-i18n="filterAll">ALL</button>
+          <button class="btn filter-btn" data-filter="open" type="button" data-i18n="filterOpen">OPEN</button>
+          <button class="btn filter-btn" data-filter="fixed" type="button" data-i18n="filterFixed">FIXED (CLOSED)</button>
           <button class="btn filter-btn" data-filter="drinking" type="button" data-i18n="filterDrinking">DRINKING WATER</button>
+          <button class="btn filter-btn" data-filter="gush" type="button" data-i18n="filterGush">GUSH ONLY</button>
+          <button class="btn filter-btn" data-filter="simulated" type="button" data-i18n="filterSimulated">SIMULATED</button>
         </div>
       </div>
 
@@ -224,6 +294,84 @@
         <!-- Injected dynamically via app.js -->
         <div class="slab" style="padding: 32px; grid-column: 1 / -1; text-align: center;">
           <p style="font-weight: 700;" data-i18n="loadingQueue">Loading municipal queue...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: GUIDELINES & HOW IT WORKS (COMPACT ACCORDION / CARDS) -->
+    <section id="guidelines-section" class="guidelines-section slab">
+      <div class="guidelines-header">
+        <div>
+          <span class="sticker sticker-spray" data-i18n="guidelinesBadge">STANDARD OPERATING PROTOCOL</span>
+          <h3 data-i18n="guidelinesHeading" style="margin-top: 6px;">HOW BOOND WORKS: 8-STEP PROTOCOL</h3>
+        </div>
+        <button id="toggle-guidelines-btn" class="btn btn-paper" type="button" aria-expanded="true" aria-controls="guidelines-content">
+          <span id="toggle-guidelines-text">COLLAPSE</span> ▲
+        </button>
+      </div>
+
+      <div id="guidelines-content" class="guidelines-content">
+        <!-- 8 Operating Steps Grid -->
+        <div class="steps-grid">
+          <div class="step-card">
+            <span class="step-num">01</span>
+            <h4 data-i18n="step1Title">Locate Leak</h4>
+            <p data-i18n="step1Desc">Locate the leak on the map or use the location button to record coordinates.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">02</span>
+            <h4 data-i18n="step2Title">Select Flow</h4>
+            <p data-i18n="step2Desc">Select Drip, Steady or Gush based on the observed water flow rate.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">03</span>
+            <h4 data-i18n="step3Title">Drinking Water</h4>
+            <p data-i18n="step3Desc">Indicate whether a drinking water line is affected (applies 1.5x priority weight).</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">04</span>
+            <h4 data-i18n="step4Title">Photo Evidence</h4>
+            <p data-i18n="step4Desc">Add an on-site photo when available and submit the report to the triage engine.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">05</span>
+            <h4 data-i18n="step5Title">30m Proximity Merge</h4>
+            <p data-i18n="step5Desc">Similar open reports within 30 metres are automatically merged into one ticket.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">06</span>
+            <h4 data-i18n="step6Title">Ranked Queue</h4>
+            <p data-i18n="step6Desc">Follow the ranked queue to understand which repair needs immediate attention.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">07</span>
+            <h4 data-i18n="step7Title">Cedar Closure Rule</h4>
+            <p data-i18n="step7Desc">Only an authorized engineer can close a ticket, and after-repair photo proof is mandatory.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">08</span>
+            <h4 data-i18n="step8Title">Neighbor Disputes</h4>
+            <p data-i18n="step8Desc">Residents can dispute premature closure; 2 disputes trigger automated reopening.</p>
+          </div>
+        </div>
+
+        <!-- How Priority Works & Honesty Notice -->
+        <div class="priority-explanation-box">
+          <div class="priority-formula-card">
+            <h4 data-i18n="priorityFormulaTitle">TRIAGE PRIORITY FORMULA (HEURISTIC AID)</h4>
+            <div class="formula-display">
+              <code>Priority Score = Flow Midpoint × Drinking Multiplier (1.5x) × Reporter Multiplier</code>
+            </div>
+            <p data-i18n="priorityAssumptions" style="font-size: 13px; font-weight: 500; margin-top: 8px;">
+              Midpoints: Drip (125 L/d) · Steady (1,250 L/d) · Gush (9,500 L/d). Reporter multiplier adds +0.25 per additional citizen report.
+            </p>
+          </div>
+          <div class="triage-disclaimer-card">
+            <h4 data-i18n="triageAidTitle">TRIAGE AID DISCLAIMER</h4>
+            <p data-i18n="triageAidText">
+              Priority ranking is a triage aid for maintenance prioritization, not an official municipal order or a verified physical measurement of actual water saved. Seeded reports are simulated for demonstration.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -259,6 +407,67 @@
             Estimated leakage addressed represents triage ranking metrics, NOT verified water saved. Demo seed tickets are simulated and never claimed as live reports. Prototype PIN authentication must be replaced with Cognito in production.
           </p>
         </div>
+      </div>
+    </section>
+
+    <!-- SECTION 9: CONTACT & FEEDBACK (LOCAL DRAFT / PROTOTYPE SAFE) -->
+    <section id="contact-section" class="contact-section slab">
+      <div class="contact-header">
+        <span class="sticker sticker-ink">FEEDBACK & FIELD INQUIRIES</span>
+        <h3 style="margin-top: 6px;">BOOND — Water Emergency Triage Engine</h3>
+        <p style="font-weight: 500; font-size: 14px; color: #444; margin-top: 4px;">
+          Have field observations, telemetry suggestions, or bug reports? Prepare a local dispatch draft below.
+        </p>
+      </div>
+
+      <!-- Prototype Notice Banner -->
+      <div class="contact-prototype-banner">
+        <strong>⚠️ PROTOTYPE NOTICE:</strong>
+        <span>
+          This demonstration environment does not yet have a configured support inbox or feedback endpoint. Submissions generate a local draft that you can review and copy to dispatch through authorized municipal channels.
+        </span>
+      </div>
+
+      <form id="feedback-form" class="feedback-form" novalidate>
+        <div class="feedback-form-grid">
+          <div class="form-group">
+            <label class="form-label" for="feedback-subject" data-i18n="feedbackSubjectLabel">SUBJECT *</label>
+            <select id="feedback-subject" class="slab" style="padding: 10px; width: 100%; font-weight: 600;" required>
+              <option value="field_observation">Field Usability / Mobile Report</option>
+              <option value="sensor_issue">Telemetry / Map Accuracy Note</option>
+              <option value="policy_inquiry">Cedar Policy / Authorization Question</option>
+              <option value="other">General Prototype Feedback</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="feedback-email" data-i18n="feedbackEmailLabel">CONTACT EMAIL (OPTIONAL)</label>
+            <input type="email" id="feedback-email" class="slab" style="padding: 10px; width: 100%; font-weight: 600;" placeholder="engineer@municipality.gov (optional)">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="feedback-message" data-i18n="feedbackMessageLabel">MESSAGE *</label>
+          <textarea id="feedback-message" rows="4" class="slab" style="padding: 10px; width: 100%; font-family: var(--font-body); font-weight: 500; resize: vertical;" placeholder="Describe field conditions, bug details, or suggestions..." required></textarea>
+        </div>
+
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+          <button id="generate-feedback-btn" class="btn btn-water" type="submit">
+            📋 <span data-i18n="generateDraftBtn">GENERATE FEEDBACK DRAFT</span>
+          </button>
+          <span id="feedback-status-msg" style="font-size: 13px; font-weight: 700;"></span>
+        </div>
+      </form>
+
+      <!-- Copyable Feedback Draft Box (revealed upon generation) -->
+      <div id="feedback-draft-container" class="feedback-draft-container" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <strong style="font-size: 12px; text-transform: uppercase;">Generated Feedback Draft (Ready to Copy)</strong>
+          <button id="copy-feedback-btn" class="btn btn-paper" type="button" style="padding: 6px 14px; font-size: 12px;">
+            📋 COPY DRAFT
+          </button>
+        </div>
+        <pre id="feedback-draft-text" class="feedback-draft-pre"></pre>
       </div>
     </section>
 

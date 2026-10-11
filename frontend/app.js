@@ -20,10 +20,12 @@
       engineerBtn: "ENGINEER MODE",
       engineerActive: "ENGINEER ACTIVE",
       heroTag: "WATER EMERGENCY TRIAGE ENGINE",
-      heroTitle: "EVERY LEAK. RANKED.",
+      heroProtocol: "MUNICIPAL PROTOCOL",
+      heroTitle: "# EVERY LEAK. RANKED.",
       heroPitch: "Turn scattered leak reports into the next repair that matters.",
       reportBtn: "REPORT A LEAK",
       queueBtn: "VIEW REPAIR QUEUE",
+      guidelinesNavBtn: "GUIDELINES",
       seedBtn: "SEED 12 DEMO LEAKS",
       ledgerAddressed: "ESTIMATED LEAKAGE RATE ADDRESSED",
       ledgerClosed: "TICKETS CLOSED W/ PROOF",
@@ -44,7 +46,7 @@
       flowSeverity: "OBSERVED FLOW SEVERITY",
       drinkingLine: "DRINKING WATER LINE?",
       drinkingSub: "Applies 1.5x priority weight",
-      coordsLabel: "SELECTED LOCATION (CLICK MAP)",
+      coordsLabel: "SELECTED LOCATION",
       readyTag: "READY",
       photoLabel: "LEAK PHOTO (OPTIONAL)",
       photoPrompt: "📸 Tap or click to select / capture photo",
@@ -52,9 +54,15 @@
       submittingReport: "SUBMITTING REPORT...",
       queueBadge: "CEDAR GOVERNED QUEUE",
       queueHeading: "FIX THIS FIRST",
-      filterAll: "ALL TICKETS",
-      filterGush: "GUSH ONLY",
+      queueUpdated: "Last updated:",
+      refreshBtn: "REFRESH",
+      filterAll: "ALL",
+      filterOpen: "OPEN",
+      filterFixed: "FIXED (CLOSED)",
       filterDrinking: "DRINKING WATER",
+      filterGush: "GUSH ONLY",
+      filterSimulated: "SIMULATED",
+      searchPlaceholder: "🔍 Search ID, flow, location...",
       loadingQueue: "Loading municipal queue...",
       noTicketsFound: "NO LEAKS FOUND IN THIS VIEW.",
       reportersCount: "citizen reports",
@@ -65,6 +73,39 @@
       stillLeakingBtn: "STILL LEAKING?",
       nowFixingPrefix: "NOW FIXING:",
       noOpenLeaks: "NO OPEN LEAKS IN QUEUE · GOOD JOB",
+      guidelinesBadge: "STANDARD OPERATING PROTOCOL",
+      guidelinesHeading: "HOW BOOND WORKS: 8-STEP PROTOCOL",
+      step1Title: "Locate Leak",
+      step1Desc: "Locate the leak on the map or use the location button to record coordinates.",
+      step2Title: "Select Flow",
+      step2Desc: "Select Drip, Steady or Gush based on the observed water flow rate.",
+      step3Title: "Drinking Water",
+      step3Desc: "Indicate whether a drinking water line is affected (applies 1.5x priority weight).",
+      step4Title: "Photo Evidence",
+      step4Desc: "Add an on-site photo when available and submit the report to the triage engine.",
+      step5Title: "30m Proximity Merge",
+      step5Desc: "Similar open reports within 30 metres are automatically merged into one ticket.",
+      step6Title: "Ranked Queue",
+      step6Desc: "Follow the ranked queue to understand which repair needs immediate attention.",
+      step7Title: "Cedar Closure Rule",
+      step7Desc: "Only an authorized engineer can close a ticket, and after-repair photo proof is mandatory.",
+      step8Title: "Neighbor Disputes",
+      step8Desc: "Residents can dispute premature closure; 2 disputes trigger automated reopening.",
+      priorityFormulaTitle: "TRIAGE PRIORITY FORMULA (HEURISTIC AID)",
+      priorityAssumptions: "Midpoints: Drip (125 L/d) · Steady (1,250 L/d) · Gush (9,500 L/d). Reporter multiplier adds +0.25 per additional citizen report.",
+      triageAidTitle: "TRIAGE AID DISCLAIMER",
+      triageAidText: "Priority ranking is a triage aid for maintenance prioritization, not an official municipal order or a verified physical measurement of actual water saved. Seeded reports are simulated for demonstration.",
+      feedbackSubjectLabel: "SUBJECT *",
+      feedbackEmailLabel: "CONTACT EMAIL (OPTIONAL)",
+      feedbackMessageLabel: "MESSAGE *",
+      generateDraftBtn: "GENERATE FEEDBACK DRAFT",
+      copyDraftBtn: "COPY DRAFT",
+      copyCoordsBtn: "COPY",
+      coordsCopied: "COPIED ✓",
+      showOnMapBtn: "MAP",
+      locationDemoTag: "📍 DEMO REFERENCE (DELHI)",
+      locationClickedTag: "👆 MAP CLICKED POINT",
+      locationGpsTag: "🎯 GPS CONFIRMED (DEVICE)",
       honestyHeading: "HOW THE NUMBERS WORK (METHODOLOGY & HONESTY)",
       calcTitle: "1. Flow Rates & Heuristic Priority",
       calcBody: "Flows are estimated: Drip (50–200 L/d, midpoint 125), Steady (500–2,000 L/d, midpoint 1,250), and Gush (4,000–15,000 L/d, midpoint 9,500). Priority formula applies a 1.5x multiplier for drinking water lines and +0.25 per additional reporter.",
@@ -90,10 +131,12 @@
       engineerBtn: "इंजीनियर मोड",
       engineerActive: "इंजीनियर सक्रिय",
       heroTag: "जल आपातकालीन प्राथमिकता प्रणाली",
-      heroTitle: "हर रिसाव। प्राथमिकता में।",
+      heroProtocol: "नगरपालिका प्रोटोकॉल",
+      heroTitle: "# हर रिसाव। प्राथमिकता में।",
       heroPitch: "नागरिक रिपोर्टों को अगली महत्वपूर्ण मरम्मत में बदलें।",
       reportBtn: "रिसाव की रिपोर्ट करें",
       queueBtn: "मरम्मत कतार देखें",
+      guidelinesNavBtn: "दिशानिर्देश",
       seedBtn: "12 डेमो रिसाव दर्ज करें",
       ledgerAddressed: "अनुमानित रिसाव दर रोकथाम",
       ledgerClosed: "प्रमाण सहित बंद टिकट",
@@ -114,7 +157,7 @@
       flowSeverity: "रिसाव की तीव्रता",
       drinkingLine: "पेयजल पाइपलाइन?",
       drinkingSub: "1.5x प्राथमिकता भार लागू",
-      coordsLabel: "चुना गया स्थान (मानचित्र पर क्लिक करें)",
+      coordsLabel: "चुना गया स्थान",
       readyTag: "तैयार",
       photoLabel: "रिसाव की फोटो (वैकल्पिक)",
       photoPrompt: "📸 फोटो चुनने या खींचने के लिए टैप करें",
@@ -122,9 +165,15 @@
       submittingReport: "जमा हो रहा है...",
       queueBadge: "सीडर अधिकृत कतार",
       queueHeading: "पहले इसे ठीक करें",
-      filterAll: "सभी टिकट",
-      filterGush: "केवल तीव्र",
+      queueUpdated: "अंतिम अपडेट:",
+      refreshBtn: "ताज़ा करें",
+      filterAll: "सभी",
+      filterOpen: "खुले",
+      filterFixed: "सुधारे गए",
       filterDrinking: "पेयजल लाइन",
+      filterGush: "केवल तीव्र",
+      filterSimulated: "सिम्युलेटेड",
+      searchPlaceholder: "🔍 आईडी, बहाव, स्थान खोजें...",
       loadingQueue: "कतार लोड हो रही है...",
       noTicketsFound: "इस दृश्य में कोई रिसाव नहीं मिला।",
       reportersCount: "नागरिक रिपोर्टें",
@@ -135,6 +184,39 @@
       stillLeakingBtn: "अभी भी रिस रहा है?",
       nowFixingPrefix: "वर्तमान प्राथमिकता:",
       noOpenLeaks: "कतार में कोई खुला रिसाव नहीं · बहुत बढ़िया",
+      guidelinesBadge: "मानक संचालन प्रोटोकॉल",
+      guidelinesHeading: "बूंद कार्यप्रणाली: 8-चरणीय प्रोटोकॉल",
+      step1Title: "स्थान चुनें",
+      step1Desc: "मानचित्र पर रिसाव खोजें या जीपीएस निर्देशांक दर्ज करने हेतु बटन दबाएं।",
+      step2Title: "बहाव चुनें",
+      step2Desc: "देखे गए बहाव के अनुसार टपकन, स्थिर या तीव्र चुनें।",
+      step3Title: "पेयजल लाइन",
+      step3Desc: "दर्ज करें कि क्या पेयजल पाइपलाइन प्रभावित है (1.5x भार लागू)।",
+      step4Title: "फोटो प्रमाण",
+      step4Desc: "उपलब्ध होने पर घटनास्थल की फोटो जोड़ें और रिपोर्ट जमा करें।",
+      step5Title: "30 मी. निकटता विलय",
+      step5Desc: "खुले रिसाव के 30 मीटर के भीतर समान रिपोर्टें स्वचालित रूप से विलय हो जाती हैं।",
+      step6Title: "प्राथमिकता कतार",
+      step6Desc: "रैंक की गई कतार से समझें कि किस मरम्मत पर तत्काल ध्यान देने की आवश्यकता है।",
+      step7Title: "सीडर समापन नियम",
+      step7Desc: "केवल अधिकृत इंजीनियर टिकट बंद कर सकता है, और मरम्मत पश्चात फोटो अनिवार्य है।",
+      step8Title: "नागरिक आपत्तियां",
+      step8Desc: "नागरिक समयपूर्व बंद होने पर आपत्ति दर्ज कर सकते हैं; 2 आपत्तियां टिकट पुनः खोलती हैं।",
+      priorityFormulaTitle: "प्राथमिकता सूत्र (सहायक मीट्रिक)",
+      priorityAssumptions: "मध्यबिंदु: टपकन (125 ली/दिन) · स्थिर (1,250 ली/दिन) · तीव्र (9,500 ली/दिन)। अतिरिक्त रिपोर्टर पर +0.25x भार।",
+      triageAidTitle: "प्राथमिकता अस्वीकरण",
+      triageAidText: "प्राथमिकता रैंकिंग मरम्मत नियोजन हेतु एक सहायता प्रणाली है, आधिकारिक नगरपालिका आदेश या सत्यापित जल बचत नहीं। डेमो रिपोर्टें सिम्युलेटेड हैं।",
+      feedbackSubjectLabel: "विषय *",
+      feedbackEmailLabel: "संपर्क ईमेल (वैकल्पिक)",
+      feedbackMessageLabel: "संदेश *",
+      generateDraftBtn: "फीडबैक ड्राफ्ट तैयार करें",
+      copyDraftBtn: "ड्राफ्ट कॉपी करें",
+      copyCoordsBtn: "कॉपी",
+      coordsCopied: "कॉपी हुआ ✓",
+      showOnMapBtn: "मानचित्र",
+      locationDemoTag: "📍 संदर्भ केंद्र (दिल्ली डेमो)",
+      locationClickedTag: "👆 मानचित्र पर चुना गया",
+      locationGpsTag: "🎯 जीपीएस सत्यापित (उपकरण)",
       honestyHeading: "आंकड़े कैसे काम करते हैं (विधि और सत्यता)",
       calcTitle: "1. बहाव दर और प्राथमिकता",
       calcBody: "अनुमानित बहाव: टपकन (50–200 ली/दिन), स्थिर (500–2,000 ली/दिन), तीव्र (4,000–15,000 ली/दिन)। पेयजल के लिए 1.5x और प्रत्येक अतिरिक्त रिपोर्टर पर +0.25 वृद्धि होती है।",
@@ -164,9 +246,12 @@
     selectedFlow: "drip",
     selectedDrinking: false,
     selectedPhotoFile: null,
+    locationSource: "demo", // "demo", "clicked", "gps"
     tickets: [],
     closedTickets: [], // Retains closed tickets for trail and dispute flows
     filter: "all",
+    searchQuery: "",
+    lastUpdated: null,
     closingTicketId: null,
     closingPhotoFile: null,
     pollingTimer: null,
@@ -322,9 +407,13 @@
   // ============================================================================
   // LEAFLET MAP SETUP & MARKERS
   // ============================================================================
+  // ============================================================================
+  // LEAFLET MAP SETUP & MARKERS
+  // ============================================================================
   let leafletMap = null;
   let selectedMarker = null;
   let ticketMarkersGroup = null;
+  const ticketMarkersMap = new Map();
 
   function initMap() {
     const mapElement = document.getElementById("map");
@@ -342,12 +431,12 @@
 
     ticketMarkersGroup = L.layerGroup().addTo(leafletMap);
 
-    // Initial selected coordinate marker
-    updateSelectedPin(state.selectedLat, state.selectedLng);
+    // Initial selected coordinate marker (Explicit default demo location)
+    updateSelectedPin(state.selectedLat, state.selectedLng, "demo");
 
     // Map click handler to pick report location
     leafletMap.on("click", (e) => {
-      updateSelectedPin(e.latlng.lat, e.latlng.lng);
+      updateSelectedPin(e.latlng.lat, e.latlng.lng, "clicked");
     });
 
     // Handle "Use my location"
@@ -368,9 +457,9 @@
             locateBtn.textContent = `🎯 ${I18N[currentLang].locateBtn}`;
             const lat = pos.coords.latitude;
             const lng = pos.coords.longitude;
-            updateSelectedPin(lat, lng);
+            updateSelectedPin(lat, lng, "gps");
             leafletMap.setView([lat, lng], 15);
-            showToast("Location updated from GPS", "info");
+            showToast("Location updated from confirmed GPS coordinates", "info");
           },
           (err) => {
             locateBtn.disabled = false;
@@ -383,13 +472,29 @@
     }
   }
 
-  function updateSelectedPin(lat, lng) {
+  function updateSelectedPin(lat, lng, source = "clicked") {
     state.selectedLat = parseFloat(lat.toFixed(6));
     state.selectedLng = parseFloat(lng.toFixed(6));
+    state.locationSource = source;
 
     const coordsDisplay = document.getElementById("coords-text");
     if (coordsDisplay) {
       coordsDisplay.textContent = `Lat: ${state.selectedLat.toFixed(5)}, Lng: ${state.selectedLng.toFixed(5)}`;
+    }
+
+    const sourceTag = document.getElementById("coords-source-tag");
+    const dict = I18N[currentLang];
+    if (sourceTag) {
+      if (source === "gps") {
+        sourceTag.className = "sticker sticker-spray";
+        sourceTag.textContent = dict.locationGpsTag || "🎯 GPS CONFIRMED (DEVICE)";
+      } else if (source === "clicked") {
+        sourceTag.className = "sticker sticker-paper";
+        sourceTag.textContent = dict.locationClickedTag || "👆 MAP CLICKED POINT";
+      } else {
+        sourceTag.className = "sticker sticker-paper";
+        sourceTag.textContent = dict.locationDemoTag || "📍 DEMO REFERENCE (DELHI)";
+      }
     }
 
     if (!leafletMap) return;
@@ -411,7 +516,7 @@
 
       selectedMarker.on("dragend", (e) => {
         const pt = e.target.getLatLng();
-        updateSelectedPin(pt.lat, pt.lng);
+        updateSelectedPin(pt.lat, pt.lng, "clicked");
       });
     }
   }
@@ -419,6 +524,7 @@
   function renderMapTickets(allTickets) {
     if (!leafletMap || !ticketMarkersGroup) return;
     ticketMarkersGroup.clearLayers();
+    ticketMarkersMap.clear();
 
     allTickets.forEach((t) => {
       if (!t.lat || !t.lng) return;
@@ -454,8 +560,105 @@
         </div>
       `);
 
+      // Marker click synchronisation: trigger ripple & scroll ticket in queue
+      marker.on("click", () => {
+        const el = marker.getElement();
+        if (el) {
+          el.classList.add("ripple-active");
+          setTimeout(() => el.classList.remove("ripple-active"), 1200);
+        }
+        highlightTicketInQueue(t.id);
+      });
+
       ticketMarkersGroup.addLayer(marker);
+      ticketMarkersMap.set(t.id, marker);
     });
+  }
+
+  function selectTicketOnMap(ticketId) {
+    if (!leafletMap) return;
+    const marker = ticketMarkersMap.get(ticketId);
+    const all = [...state.tickets, ...state.closedTickets];
+    const ticket = all.find((t) => t.id === ticketId);
+    if (ticket && marker) {
+      leafletMap.setView([ticket.lat, ticket.lng], Math.max(leafletMap.getZoom(), 14), { animate: true });
+      marker.openPopup();
+      const el = marker.getElement();
+      if (el) {
+        el.classList.add("ripple-active");
+        setTimeout(() => el.classList.remove("ripple-active"), 1200);
+      }
+      showToast(`Focused ticket #${ticketId.substring(0, 8)} on municipal map`, "info");
+    }
+  }
+
+  function highlightTicketInQueue(ticketId) {
+    const card = document.getElementById(`card-${ticketId}`);
+    if (card) {
+      card.scrollIntoView({ behavior: "smooth", block: "center" });
+      card.classList.add("highlight-selected-ticket");
+      setTimeout(() => card.classList.remove("highlight-selected-ticket"), 3000);
+    }
+  }
+
+  function triggerMascotReaction(type = "report") {
+    const mascotBox = document.getElementById("boondy-mascot-box");
+    const bubble = document.getElementById("mascot-bubble");
+    if (!mascotBox) return;
+
+    mascotBox.classList.add("cheer");
+    if (bubble) {
+      bubble.textContent = type === "close" ? "FIXED! ✓" : "REPORTED! 💧";
+    }
+
+    setTimeout(() => {
+      mascotBox.classList.remove("cheer");
+      if (bubble) {
+        bubble.textContent = "FIELD READY";
+      }
+    }, 2500);
+  }
+
+  function copyToClipboard(text, onSuccess) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(onSuccess).catch(() => fallbackCopy(text, onSuccess));
+    } else {
+      fallbackCopy(text, onSuccess);
+    }
+  }
+
+  function fallbackCopy(text, onSuccess) {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand("copy");
+      if (onSuccess) onSuccess();
+    } catch {
+      showToast("Unable to copy automatically. Please copy manually.", "error");
+    } finally {
+      ta.remove();
+    }
+  }
+
+  function updateLastUpdatedIndicator() {
+    const el = document.getElementById("queue-last-updated");
+    if (!el) return;
+    const dict = I18N[currentLang];
+    const prefix = dict.queueUpdated || "Last updated:";
+    if (!getApiBaseUrl()) {
+      el.textContent = `${prefix} OFFLINE PREVIEW`;
+      return;
+    }
+    if (!state.lastUpdated) {
+      el.textContent = `${prefix} Waiting for refresh...`;
+      return;
+    }
+    const timeStr = state.lastUpdated.toLocaleTimeString();
+    el.textContent = `${prefix} ${timeStr}`;
   }
 
   // ============================================================================
@@ -569,6 +772,9 @@
         showToast(`New leak added to municipal queue! (#${result.ticket?.id || ""})`, "success");
       }
 
+      // Celebrate with mascot reaction
+      triggerMascotReaction("report");
+
       // Reset photo field
       state.selectedPhotoFile = null;
       const photoInput = document.getElementById("report-photo-input");
@@ -619,6 +825,7 @@
       }
       updateNowFixingBar([]);
       updateLedgerMetrics([], null);
+      updateLastUpdatedIndicator();
       return;
     }
 
@@ -635,6 +842,9 @@
         }
       });
 
+      state.lastUpdated = new Date();
+      updateLastUpdatedIndicator();
+
       renderTickets(combined);
       renderMapTickets(combined);
       updateNowFixingBar(state.tickets);
@@ -644,6 +854,7 @@
     } catch (err) {
       console.warn("Failed to fetch tickets from backend:", err);
       updateConnectionStatus("error");
+      updateLastUpdatedIndicator();
       if (container) {
         container.innerHTML = `
           <div class="slab" style="padding: 32px; grid-column: 1 / -1; text-align: center; border-color: var(--alarm);">
@@ -662,10 +873,28 @@
 
     const source = ticketsToRender || [...state.tickets, ...state.closedTickets];
     let filtered = source;
-    if (state.filter === "gush") {
+
+    if (state.filter === "open") {
+      filtered = filtered.filter((t) => t.status === "OPEN");
+    } else if (state.filter === "fixed" || state.filter === "closed") {
+      filtered = filtered.filter((t) => t.status === "CLOSED");
+    } else if (state.filter === "gush") {
       filtered = filtered.filter((t) => (t.flow || "").toLowerCase() === "gush");
     } else if (state.filter === "drinking") {
       filtered = filtered.filter((t) => t.drinking === true);
+    } else if (state.filter === "simulated") {
+      filtered = filtered.filter((t) => t.is_simulated === true);
+    }
+
+    if (state.searchQuery && state.searchQuery.trim()) {
+      const q = state.searchQuery.trim().toLowerCase();
+      filtered = filtered.filter((t) => {
+        const idMatch = (t.id || "").toLowerCase().includes(q);
+        const flowMatch = (t.flow || "").toLowerCase().includes(q);
+        const statusMatch = (t.status || "").toLowerCase().includes(q);
+        const latLngMatch = `${t.lat},${t.lng}`.includes(q);
+        return idMatch || flowMatch || statusMatch || latLngMatch;
+      });
     }
 
     if (filtered.length === 0) {
@@ -690,6 +919,8 @@
         const hasAfterProof = Boolean(t.has_after_photo || t.after_photo_key || t.after_photo_url);
         const isSimulated = t.is_simulated === true;
         const disputes = t.dispute_count || 0;
+        const latStr = Number(t.lat || 0).toFixed(5);
+        const lngStr = Number(t.lng || 0).toFixed(5);
 
         return `
           <article class="ticket-card" id="card-${escapeHtml(t.id)}" data-id="${escapeHtml(t.id)}">
@@ -714,9 +945,17 @@
                 </div>
               </div>
 
-              <div style="margin-top: 10px; display:flex; justify-content:space-between; align-items:center;">
+              <div class="ticket-location-row">
                 <span class="ticket-id">ID: ${escapeHtml(t.id)}</span>
-                <span class="ticket-location-tag">📍 ${Number(t.lat || 0).toFixed(5)}°, ${Number(t.lng || 0).toFixed(5)}°</span>
+                <div class="ticket-coords-tools">
+                  <span class="ticket-location-tag">📍 ${latStr}°, ${lngStr}°</span>
+                  <button type="button" class="btn-mini-tool btn-copy-coords" data-coords="${latStr}, ${lngStr}" title="Copy ticket coordinates" aria-label="Copy coordinates for ticket ${escapeHtml(t.id)}">
+                    📋 ${I18N[currentLang].copyCoordsBtn || 'COPY'}
+                  </button>
+                  <button type="button" class="btn-mini-tool btn-show-map" data-id="${escapeHtml(t.id)}" title="Focus on municipal map" aria-label="Focus ticket ${escapeHtml(t.id)} on map">
+                    🗺️ ${I18N[currentLang].showOnMapBtn || 'MAP'}
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -810,6 +1049,25 @@
 
     container.querySelectorAll(".btn-dispute-ticket").forEach((btn) => {
       btn.addEventListener("click", () => handleDispute(btn.getAttribute("data-id")));
+    });
+
+    container.querySelectorAll(".btn-copy-coords").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const coords = btn.getAttribute("data-coords");
+        copyToClipboard(coords, () => {
+          btn.textContent = `✓ ${I18N[currentLang].coordsCopied || 'COPIED'}`;
+          showToast(`Coordinates copied: ${coords}`, "info");
+          setTimeout(() => {
+            btn.textContent = `📋 ${I18N[currentLang].copyCoordsBtn || 'COPY'}`;
+          }, 2000);
+        });
+      });
+    });
+
+    container.querySelectorAll(".btn-show-map").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        selectTicketOnMap(btn.getAttribute("data-id"));
+      });
     });
   }
 
@@ -1088,6 +1346,9 @@
           card.classList.add("just-fixed");
         }
 
+        // Celebrate closure with mascot reaction
+        triggerMascotReaction("close");
+
         // Add closed ticket to local state cache so evidence trail can be viewed
         if (closeRes.ticket) {
           state.closedTickets = state.closedTickets.filter((t) => t.id !== ticketId);
@@ -1237,7 +1498,88 @@
   }
 
   // ============================================================================
-  // LANGUAGE TOGGLE
+  // GUIDELINES ACCORDION
+  // ============================================================================
+  function setupGuidelinesAccordion() {
+    const toggleBtn = document.getElementById("toggle-guidelines-btn");
+    const content = document.getElementById("guidelines-content");
+    if (!toggleBtn || !content) return;
+
+    toggleBtn.addEventListener("click", () => {
+      const isCollapsed = content.classList.toggle("collapsed");
+      toggleBtn.setAttribute("aria-expanded", String(!isCollapsed));
+      toggleBtn.innerHTML = isCollapsed
+        ? `<span id="toggle-guidelines-text">EXPAND</span> ▼`
+        : `<span id="toggle-guidelines-text">COLLAPSE</span> ▲`;
+    });
+  }
+
+  // ============================================================================
+  // SECTION 9: CONTACT & FEEDBACK (LOCAL DRAFT / NO FAKE ENDPOINT)
+  // ============================================================================
+  function setupFeedbackForm() {
+    const form = document.getElementById("feedback-form");
+    const subjectEl = document.getElementById("feedback-subject");
+    const emailEl = document.getElementById("feedback-email");
+    const messageEl = document.getElementById("feedback-message");
+    const draftContainer = document.getElementById("feedback-draft-container");
+    const draftText = document.getElementById("feedback-draft-text");
+    const copyBtn = document.getElementById("copy-feedback-btn");
+    const statusMsg = document.getElementById("feedback-status-msg");
+
+    if (!form) return;
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const subject = subjectEl ? subjectEl.options[subjectEl.selectedIndex]?.text || subjectEl.value : "Field Observation";
+      const email = emailEl ? emailEl.value.trim() : "";
+      const message = messageEl ? messageEl.value.trim() : "";
+
+      if (!message) {
+        showToast("Please enter a feedback message.", "error");
+        return;
+      }
+
+      const timestamp = new Date().toISOString();
+      const draftContent = [
+        "===========================================================",
+        "BOOND — WATER EMERGENCY TRIAGE ENGINE (FEEDBACK DRAFT)",
+        "===========================================================",
+        `Generated: ${timestamp}`,
+        `Subject:   ${subject}`,
+        `Contact:   ${email || "Not provided (Anonymous Field Observation)"}`,
+        `Notice:    Local prototype draft — dispatch manually`,
+        "-----------------------------------------------------------",
+        "MESSAGE:",
+        message,
+        "==========================================================="
+      ].join("\n");
+
+      if (draftText) draftText.textContent = draftContent;
+      if (draftContainer) draftContainer.style.display = "block";
+      if (statusMsg) {
+        statusMsg.style.color = "var(--water-primary)";
+        statusMsg.textContent = "✓ Draft generated! Review and copy below.";
+      }
+      showToast("Feedback draft generated! Ready to copy.", "info");
+    });
+
+    if (copyBtn) {
+      copyBtn.addEventListener("click", () => {
+        if (!draftText) return;
+        copyToClipboard(draftText.textContent, () => {
+          copyBtn.textContent = "COPIED ✓";
+          showToast("Feedback draft copied to clipboard!", "success");
+          setTimeout(() => {
+            copyBtn.textContent = "📋 COPY DRAFT";
+          }, 2500);
+        });
+      });
+    }
+  }
+
+  // ============================================================================
+  // LANGUAGE TOGGLE & TRANSLATIONS
   // ============================================================================
   function setupLanguageToggle() {
     const enBtn = document.getElementById("lang-en-btn");
@@ -1273,8 +1615,29 @@
         el.textContent = dict[key];
       }
     });
+
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+      const key = el.getAttribute("data-i18n-placeholder");
+      if (dict[key]) {
+        el.placeholder = dict[key];
+      }
+    });
+
     updateConnectionStatus(getApiBaseUrl() ? "connected" : "disconnected");
     updateEngineerUIState();
+    updateLastUpdatedIndicator();
+
+    // Update location tag
+    const sourceTag = document.getElementById("coords-source-tag");
+    if (sourceTag) {
+      if (state.locationSource === "gps") {
+        sourceTag.textContent = dict.locationGpsTag || "🎯 GPS CONFIRMED (DEVICE)";
+      } else if (state.locationSource === "clicked") {
+        sourceTag.textContent = dict.locationClickedTag || "👆 MAP CLICKED POINT";
+      } else {
+        sourceTag.textContent = dict.locationDemoTag || "📍 DEMO REFERENCE (DELHI)";
+      }
+    }
   }
 
   // ============================================================================
@@ -1298,6 +1661,48 @@
     setupEngineerModals();
     setupWhyModal();
     setupLanguageToggle();
+    setupGuidelinesAccordion();
+    setupFeedbackForm();
+
+    // Search bar handling
+    const searchInput = document.getElementById("ticket-search-input");
+    const clearSearchBtn = document.getElementById("clear-search-btn");
+    if (searchInput) {
+      searchInput.addEventListener("input", (e) => {
+        state.searchQuery = e.target.value;
+        if (clearSearchBtn) {
+          clearSearchBtn.style.display = state.searchQuery ? "inline-flex" : "none";
+        }
+        renderTickets();
+      });
+    }
+
+    if (clearSearchBtn) {
+      clearSearchBtn.addEventListener("click", () => {
+        if (searchInput) searchInput.value = "";
+        state.searchQuery = "";
+        clearSearchBtn.style.display = "none";
+        renderTickets();
+      });
+    }
+
+    // Refresh queue button
+    const refreshBtn = document.getElementById("refresh-queue-btn");
+    if (refreshBtn) {
+      refreshBtn.addEventListener("click", async () => {
+        refreshBtn.disabled = true;
+        refreshBtn.textContent = "REFRESHING...";
+        try {
+          await loadTickets();
+          showToast("Repair queue and metrics refreshed", "info");
+        } catch {
+          showToast("Failed to refresh queue", "error");
+        } finally {
+          refreshBtn.disabled = false;
+          refreshBtn.innerHTML = `🔄 <span>${I18N[currentLang].refreshBtn || 'REFRESH'}</span>`;
+        }
+      });
+    }
 
     // Filter buttons in queue
     document.querySelectorAll(".filter-btn").forEach((btn) => {
