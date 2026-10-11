@@ -52,16 +52,21 @@
   <!-- Main Container -->
   <main class="main-wrapper">
 
-    <!-- SECTION 1: HERO -->
+    <!-- SECTION 1: HERO (Refined Water-First Hierarchy) -->
     <section class="hero-slab">
-      <span class="hero-tag" data-i18n="heroTag">WATER EMERGENCY TRIAGE ENGINE</span>
-      <h1 class="hero-title" data-i18n="heroTitle">EVERY LEAK. RANKED.</h1>
+      <div class="hero-header-line">
+        <span class="hero-tag" data-i18n="heroTag">WATER NETWORK TRIAGE ENGINE</span>
+        <span class="sticker sticker-spray" style="font-size: 11px;">MUNICIPAL PROTOCOL</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="hero-title-main" data-i18n="heroTitle">EVERY LEAK. RANKED.</span>
+      </h1>
       <p class="hero-pitch" data-i18n="heroPitch">
         Turn scattered leak reports into the next repair that matters.
       </p>
 
       <div class="hero-actions">
-        <a href="#report-section" class="btn btn-ink">
+        <a href="#report-section" class="btn btn-water">
           <span data-i18n="reportBtn">REPORT A LEAK</span>
         </a>
         <a href="#queue-section" class="btn btn-paper">
@@ -192,7 +197,7 @@
         </div>
 
         <!-- Submit Button -->
-        <button id="submit-report-btn" class="btn btn-spray" type="button" style="width: 100%; font-size: 18px; padding: 16px;">
+        <button id="submit-report-btn" class="btn btn-water" type="button" style="width: 100%; font-size: 18px; padding: 16px;">
           🚀 <span data-i18n="submitReportBtn">SUBMIT LEAK REPORT</span>
         </button>
       </div>
@@ -203,7 +208,7 @@
     <section id="queue-section" class="queue-section">
       <div class="section-header-row">
         <div>
-          <span class="sticker sticker-spray" data-i18n="queueBadge">CEDAR GOVERNED QUEUE</span>
+          <span class="sticker sticker-water" data-i18n="queueBadge">CEDAR GOVERNED QUEUE</span>
           <h2 class="queue-title" data-i18n="queueHeading">FIX THIS FIRST</h2>
         </div>
 
@@ -312,7 +317,7 @@
       </div>
       <div class="modal-footer">
         <button id="engineer-modal-cancel-btn" class="btn btn-paper" type="button">CANCEL</button>
-        <button id="engineer-modal-submit-btn" class="btn btn-spray" type="button">AUTHENTICATE</button>
+        <button id="engineer-modal-submit-btn" class="btn btn-water" type="button">AUTHENTICATE</button>
       </div>
     </div>
   </div>
