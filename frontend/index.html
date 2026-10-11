@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOOND — Every Leak. Ranked. Municipal Water-Leak Triage</title>
+  <meta name="description" content="Turn scattered leak reports into the next repair that matters. Municipal water-leak reporting and Cedar-authorized triage.">
+
+  <!-- Spray Brutalism Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Rubik+Spray+Paint&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <!-- Brutalist Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Top Navigation Header -->
+  <header class="top-nav">
+    <div class="nav-brand">
+      <span class="nav-logo">बूंद BOOND</span>
+      <span class="nav-tagline" data-i18n="tagline">MUNICIPAL LEAK TRIAGE</span>
+    </div>
+
+    <div class="nav-controls">
+      <!-- Live Status Indicator -->
+      <div id="status-indicator" class="status-pill" title="Backend Connection Status">
+        <span id="status-dot" class="status-dot disconnected"></span>
+        <span id="status-text" data-i18n="statusOffline">API OFFLINE</span>
+      </div>
+
+      <!-- Language Toggle (EN / हिं) -->
+      <div class="lang-toggle" role="group" aria-label="Language Toggle">
+        <button id="lang-en-btn" class="lang-btn active" type="button" aria-pressed="true">EN</button>
+        <button id="lang-hi-btn" class="lang-btn" type="button" aria-pressed="false">हिं</button>
+      </div>
+
+      <!-- Engineer Mode Button -->
+      <button id="engineer-mode-btn" class="btn btn-ink" type="button">
+        <span data-i18n="engineerBtn">ENGINEER MODE</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-wrapper">
+
+    <!-- SECTION 1: HERO -->
+    <section class="hero-slab">
+      <span class="hero-tag" data-i18n="heroTag">WATER EMERGENCY TRIAGE ENGINE</span>
+      <h1 class="hero-title" data-i18n="heroTitle">EVERY LEAK. RANKED.</h1>
+      <p class="hero-pitch" data-i18n="heroPitch">
+        Turn scattered leak reports into the next repair that matters.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#report-section" class="btn btn-ink">
+          <span data-i18n="reportBtn">REPORT A LEAK</span>
+        </a>
+        <a href="#queue-section" class="btn btn-paper">
+          <span data-i18n="queueBtn">VIEW REPAIR QUEUE</span>
+        </a>
+        <button id="seed-demo-btn" class="btn btn-paper" type="button" style="display: none;">
+          ⚡ <span data-i18n="seedBtn">SEED 12 DEMO LEAKS</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION 5: BENTO IMPACT LEDGER -->
+    <section class="ledger-grid" aria-label="Impact Ledger">
+      <div class="ledger-tile">
+        <span class="ledger-label" data-i18n="ledgerAddressed">EST. LEAKAGE ADDRESSED</span>
+        <div id="metric-addressed" class="ledger-value">0 L/d</div>
+        <span class="ledger-sub" data-i18n="ledgerDisclaimer">Heuristic Estimate</span>
+      </div>
+
+      <div class="ledger-tile">
+        <span class="ledger-label" data-i18n="ledgerClosed">TICKETS CLOSED W/ PROOF</span>
+        <div id="metric-closed" class="ledger-value">0</div>
+        <span class="ledger-sub" data-i18n="ledgerCedarVerified">Cedar Policy Verified</span>
+      </div>
+
+      <div class="ledger-tile">
+        <span class="ledger-label" data-i18n="ledgerMerged">DUPLICATE REPORTS MERGED</span>
+        <div id="metric-merged" class="ledger-value">0</div>
+        <span class="ledger-sub" data-i18n="ledgerWithin30m">&lt; 30m Proximity</span>
+      </div>
+
+      <div class="ledger-tile">
+        <span class="ledger-label" data-i18n="ledgerOpen">OPEN LEAKS IN QUEUE</span>
+        <div id="metric-open" class="ledger-value">0</div>
+        <span class="ledger-sub" data-i18n="ledgerPendingRepair">Active Triage</span>
+      </div>
+    </section>
+
+    <!-- SECTION 2: MAP AND REPORT FORM (BENTO LAYOUT) -->
+    <section id="report-section" class="bento-reporting-grid">
+      
+      <!-- Interactive Leaflet Map Card -->
+      <div class="slab map-card">
+        <div class="card-header">
+          <h2 data-i18n="mapHeader">MUNICIPAL LEAK MAP</h2>
+          <button id="locate-me-btn" class="btn btn-paper" type="button" style="padding: 6px 12px; font-size: 12px;">
+            🎯 <span data-i18n="locateBtn">USE MY LOCATION</span>
+          </button>
+        </div>
+
+        <div id="map" class="map-container" aria-label="Leak Reports Map"></div>
+
+        <!-- Chunky Square Legend -->
+        <div class="map-legend">
+          <div class="legend-item">
+            <span class="legend-swatch" style="background: var(--alarm);"></span>
+            <span data-i18n="legendGush">GUSH (4K-15K L/d)</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-swatch" style="background: var(--drip);"></span>
+            <span data-i18n="legendSteady">STEADY (500-2K L/d)</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-swatch" style="background: var(--spray);"></span>
+            <span data-i18n="legendDrip">DRIP (50-200 L/d)</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-swatch" style="background: var(--ink);"></span>
+            <span data-i18n="legendClosed">FIXED (✓)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Report Form Card -->
+      <div class="slab form-card">
+        <h2 data-i18n="formTitle">REPORT LEAK</h2>
+
+        <!-- Flow Severity Selector (Chunky 3-way selector) -->
+        <div class="form-group">
+          <label class="form-label" data-i18n="flowSeverity">OBSERVED FLOW SEVERITY</label>
+          <div class="flow-selector-group" role="radiogroup" aria-label="Flow Severity">
+            <button type="button" class="btn flow-btn selected" data-flow="drip" role="radio" aria-checked="true">
+              💧 DRIP
+            </button>
+            <button type="button" class="btn flow-btn" data-flow="steady" role="radio" aria-checked="false">
+              🌊 STEADY
+            </button>
+            <button type="button" class="btn flow-btn" data-flow="gush" role="radio" aria-checked="false">
+              💥 GUSH
+            </button>
+          </div>
+        </div>
+
+        <!-- Drinking Water Priority Switch -->
+        <div class="form-group">
+          <div class="toggle-wrapper">
+            <div>
+              <div class="form-label" data-i18n="drinkingLine">DRINKING WATER LINE?</div>
+              <small style="color: #666; font-size: 11px;" data-i18n="drinkingSub">Applies 1.5x priority weight</small>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="drinking-toggle">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Coordinates Box -->
+        <div class="form-group">
+          <label class="form-label" data-i18n="coordsLabel">SELECTED LOCATION (CLICK MAP)</label>
+          <div class="coords-display">
+            <span id="coords-text">Lat: 28.61390, Lng: 77.20900</span>
+            <span class="sticker sticker-spray" data-i18n="readyTag">READY</span>
+          </div>
+        </div>
+
+        <!-- Photo Capture / Upload -->
+        <div class="form-group">
+          <label class="form-label" data-i18n="photoLabel">LEAK PHOTO (OPTIONAL)</label>
+          <label class="file-upload-box" for="report-photo-input">
+            <span id="file-chosen-text">📸 Tap or click to select / capture photo</span>
+            <input type="file" id="report-photo-input" accept="image/*" capture="environment">
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <button id="submit-report-btn" class="btn btn-spray" type="button" style="width: 100%; font-size: 18px; padding: 16px;">
+          🚀 <span data-i18n="submitReportBtn">SUBMIT LEAK REPORT</span>
+        </button>
+      </div>
+
+    </section>
+
+    <!-- SECTION 3: RANKED QUEUE -->
+    <section id="queue-section" class="queue-section">
+      <div class="section-header-row">
+        <div>
+          <span class="sticker sticker-spray" data-i18n="queueBadge">CEDAR GOVERNED QUEUE</span>
+          <h2 class="queue-title" data-i18n="queueHeading">FIX THIS FIRST</h2>
+        </div>
+
+        <div class="queue-filter-row">
+          <button class="btn filter-btn active" data-filter="all" type="button" data-i18n="filterAll">ALL TICKETS</button>
+          <button class="btn filter-btn" data-filter="gush" type="button" data-i18n="filterGush">GUSH ONLY</button>
+          <button class="btn filter-btn" data-filter="drinking" type="button" data-i18n="filterDrinking">DRINKING WATER</button>
+        </div>
+      </div>
+
+      <!-- Tickets Grid Container -->
+      <div id="tickets-container" class="tickets-container">
+        <!-- Ticket cards injected dynamically via app.js -->
+        <div class="slab" style="padding: 32px; grid-column: 1 / -1; text-align: center;">
+          <p style="font-weight: 700;" data-i18n="loadingQueue">Loading municipal queue...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: HONESTY & HOW THE NUMBERS WORK -->
+    <section class="honesty-section">
+      <h3 data-i18n="honestyHeading">HOW THE NUMBERS WORK (METHODOLOGY & HONESTY)</h3>
+      <div class="honesty-grid">
+        <div class="honesty-item">
+          <h4 data-i18n="calcTitle">1. Flow Rates & Heuristic Priority</h4>
+          <p data-i18n="calcBody">
+            Flows are estimated: Drip (50–200 L/d, midpoint 125), Steady (500–2,000 L/d, midpoint 1,250), and Gush (4,000–15,000 L/d, midpoint 9,500). Priority formula applies a 1.5x multiplier for drinking water lines and +0.25 per additional reporter.
+          </p>
+        </div>
+
+        <div class="honesty-item">
+          <h4 data-i18n="mergeTitle">2. 30-Metre Proximity Merging</h4>
+          <p data-i18n="mergeBody">
+            New reports within 30 metres of an existing open leak are automatically merged using the Haversine formula. The reporter count increases and the flow severity upgrades to the higher value observed.
+          </p>
+        </div>
+
+        <div class="honesty-item">
+          <h4 data-i18n="cedarTitle">3. Cedar Policy Authorization</h4>
+          <p data-i18n="cedarBody">
+            Ticket closures require authenticated engineer status and verified after-repair photo proof. Reopening closed tickets requires at least 2 citizen disputes. Authorization decisions fail closed by design.
+          </p>
+        </div>
+
+        <div class="honesty-item">
+          <h4 data-i18n="disclaimerTitle">4. Honest Estimation Disclaimer</h4>
+          <p data-i18n="disclaimerBody">
+            Estimated leakage addressed represents triage ranking metrics, NOT verified water saved. Demo seed tickets are simulated and never claimed as live reports. Prototype PIN authentication must be replaced with Cognito in production.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SECTION 4: STICKY "NOW FIXING" BAR -->
+  <aside id="now-fixing-bar" class="now-fixing-bar" aria-label="Now Fixing Bar">
+    <div class="now-fixing-info">
+      <span class="now-fixing-label">NOW FIXING</span>
+      <span id="now-fixing-text" class="now-fixing-text">
+        NO OPEN LEAKS IN QUEUE · GOOD JOB
+      </span>
+    </div>
+    <button id="now-fixing-jump-btn" class="btn now-fixing-btn" type="button" aria-label="Jump to ticket">
+      ▶
+    </button>
+  </aside>
+
+  <!-- "WHY?" DRAWER MODAL -->
+  <div id="why-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="why-modal-title">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 id="why-modal-title">TRIAGE & POLICY ANALYSIS</h3>
+        <button id="why-modal-close-btn" class="btn btn-paper" type="button" style="padding: 4px 10px; font-size: 14px;">✕</button>
+      </div>
+      <div id="why-modal-body" class="modal-body">
+        <!-- Injected dynamically -->
+      </div>
+      <div class="modal-footer">
+        <button id="why-modal-done-btn" class="btn btn-ink" type="button">CLOSE</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENGINEER AUTH / CLOSE TICKET MODAL -->
+  <div id="engineer-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="engineer-modal-title">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 id="engineer-modal-title">ENGINEER AUTHORIZATION</h3>
+        <button id="engineer-modal-close-btn" class="btn btn-paper" type="button" style="padding: 4px 10px; font-size: 14px;">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for="engineer-pin-input">ENGINEER PIN</label>
+          <input type="password" id="engineer-pin-input" class="slab" style="padding: 12px; font-size: 18px; width: 100%; border: var(--border-thick);" placeholder="Enter PIN (e.g. 8472)">
+          <small style="color: #666; font-size: 11px;">Prototype auth stored in sessionStorage only (never localStorage).</small>
+        </div>
+
+        <div id="engineer-close-fields" style="display: none;" class="form-group">
+          <label class="form-label" for="after-photo-input">AFTER-REPAIR PHOTO PROOF (REQUIRED BY CEDAR)</label>
+          <input type="file" id="after-photo-input" accept="image/*" capture="environment" class="slab" style="padding: 10px; width: 100%; border: var(--border-thick);">
+          <small style="color: var(--alarm); font-weight: 700;">Cedar policy will DENY closure without an after-repair photo.</small>
+        </div>
+
+        <div id="engineer-feedback-box" style="display: none;"></div>
+      </div>
+      <div class="modal-footer">
+        <button id="engineer-modal-cancel-btn" class="btn btn-paper" type="button">CANCEL</button>
+        <button id="engineer-modal-submit-btn" class="btn btn-spray" type="button">AUTHENTICATE</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leaflet Library -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- App Configuration & Logic -->
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
